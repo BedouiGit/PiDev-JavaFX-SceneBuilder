@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<?import java.net.*?>
+<StackPane prefHeight="712.0" prefWidth="1424.0" style="-fx-background-color: #edf0f2; -fx-border-color: -light-gray-2; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CategoryController.AffichageCategoriesController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="1.0" top="10.0" />
+    </padding>
+    <children>
+        <HBox prefHeight="1692.0" prefWidth="2383.0" spacing="10">
+            <fx:include source="NavbarAdmin.fxml" />
+
+            <Button contentDisplay="TOP" layoutX="919.0" layoutY="285.0" mnemonicParsing="false" onAction="#naviguezVersAjoutercours" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../style.css" text="Ajouter" textOverrun="WORD_ELLIPSIS">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+
+
+            <VBox fillWidth="true" spacing="10" style="-fx-padding: 10;">
+                <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1062.0" styleClass="head-background" >
+                </Pane>
+
+                <children>
+                    <HBox alignment="CENTER" >
+                        <Label text="Categories" />
+                        <Button  fx:id="addConsultation"  style="-fx-background-color: transparent;">
+
+                        </Button>
+                    </HBox>
+                    <Button fx:id="deletebuttton" disable="true" layoutX="918.0" layoutY="455.0" mnemonicParsing="false" onAction="#deletecours" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../style.css" text="Supprimer" />
+                    <ListView fx:id="listviewcours" layoutX="198.0" layoutY="285.0" prefHeight="284.0" prefWidth="546.0" />
+                    <Button fx:id="editButton" disable="true" layoutX="919.0" layoutY="369.0" mnemonicParsing="false" onAction="#naviguezVersmodifiercour" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../style.css" text="Modifier" />
+                    <Button fx:id="addEvaluationButton" disable="true" layoutX="919.0" layoutY="539.0" mnemonicParsing="false" styleClass="login-btn" stylesheets="@../style.css" text="Ajouter " />
+                    <Button fx:id="buttonReturn" layoutX="198.0" layoutY="611.0" mnemonicParsing="false" onAction="#naviguezVersAcceuil" prefHeight="30.0" prefWidth="134.0" styleClass="login-btn" stylesheets="@../style.css" text="return" />
+
+
+                </children>
+            </VBox>
+        </HBox>
+    </children>
+    <stylesheets>
+
+    </stylesheets>
+</StackPane>
