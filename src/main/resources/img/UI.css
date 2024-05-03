@@ -1,0 +1,113 @@
+.left-form{
+    -fx-background-color: white;}
+.menu-btn{
+    -fx-background-color: transparent;
+    -fx-background-radius:10px;
+    -fx-font-size:15px;
+    -fx-text-fill: #9b9aac; /* Set the default font color */
+
+}
+.menu-btn:hover{
+
+}
+.btn-trans {
+    -fx-background-color: transparent; /* Adjust the padding to create space between image and text */
+}
+.niv-lab {
+    -fx-background-color: rgba(159, 159, 159, 0.1); /* Lower opacity */
+    -fx-background-radius: 5px; /* Reduce border radius */
+}
+.warn-lab {
+    -fx-background-color: rgba(255, 0, 0, 0.1); /* Lower opacity */
+    -fx-background-radius: 5px; /* Reduce border radius */
+}
+.msg-lab {
+    -fx-background-color: rgba(0, 0, 255, 0.1); /* Lower opacity */
+    -fx-background-radius: 5px; /* Reduce border radius */
+}
+/* Remove border and background of the progress bar */
+.progress-bar {
+    -fx-background-color-color: blue;
+    -fx-border-width: 0px;
+}
+.mid-menu{
+    -fx-arc-height: 50px;
+    -fx-arc-width: 50px;
+}
+.middle-menu{
+    -fx-background-color: rgba(246, 245, 251, 0.5); /* Lower opacity */
+
+}
+.mid-menu2{
+    -fx-border-radius: 50px;
+    -fx-background-radius: 20px;
+}
+.low-mid-menu1{
+    -fx-background-color: rgba(77, 75, 172, 1); /* Lower opacity */
+    -fx-background-radius: 20px;
+
+}
+.low-mid-menu2{
+    -fx-background-color: rgba(77, 75, 172, 0.6); /* Lower opacity */
+    -fx-background-radius: 20px;
+
+}
+.low-mid-menu3{
+    -fx-background-color: rgba(255, 128, 139, 1); /* Lower opacity */
+    -fx-background-radius: 20px;
+
+}
+/* Styling the bars */
+/* Styling the bars */
+.chart-bar {
+    -fx-bar-fill: linear-gradient(to bottom, #4CAF50, #8BC34A); /* Green gradient for bars */
+    -fx-stroke: #333333; /* Outline color */
+    -fx-stroke-width: 1px; /* Outline width */
+}
+
+/* Hover effect */
+.chart-bar:hover {
+    -fx-bar-fill: #FFC107; /* Yellow color for bars on hover */
+}
+
+/* Styling the axis */
+.chart-axis {
+    -fx-tick-mark-visible: true; /* Show tick marks */
+    -fx-tick-label-fill: #673AB7; /* Color of tick labels */
+    -fx-font-family: "Arial"; /* Custom font family */
+    -fx-font-size: 14px; /* Font size of tick labels */
+    -fx-tick-length: 8px; /* Custom tick mark length */
+}
+
+/* Styling grid lines */
+.chart-horizontal-grid-lines {
+    -fx-stroke-dash-array: 2; /* Dashed grid lines */
+    -fx-stroke: #E0E0E0; /* Color of grid lines */
+}
+.aa {
+    -fx-background-radius: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 4, 4);
+    -fx-background-insets: 12;
+    -fx-background-color: white;
+}
+.aaa {
+    -fx-background-insets: 12;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.1),30,0,0,0);
+}
+.shadow-rose{
+    -fx-effect: dropshadow(three-pass-box,rgba(255,194,206,1),30,0,0,0);
+}
+.shadow-blue{
+
+     -fx-effect: dropshadow(three-pass-box,rgba(77, 75, 172,0.7),30,0,0,0);
+ }
+.shadow-blue-fonsee{
+
+    -fx-effect: dropshadow(three-pass-box,rgba(77, 75, 172,0.4),30,0,0,0);
+}
+.shadow-red{
+
+    -fx-effect: dropshadow(three-pass-box,rgba(255, 128, 139,0.7),30,0,0,0);
+}

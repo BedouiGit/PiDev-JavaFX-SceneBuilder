@@ -1,39 +1,72 @@
 package test;
 
-import entities.actualite;
-import entities.commentaire;
-import services.ActualiteService;
-import services.CommentaireService;
+import entities.Posts;
+import services.ServicePosts;
+import utils.BadWordFilter;
 import utils.MyDB;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Main {
+
     public static void main(String[] args) throws SQLException {
-        // Get an instance of the database connection
-        MyDB myDB = MyDB.getInstance();
 
-        // Instantiate services
-        ActualiteService actualiteService = new ActualiteService();
-        CommentaireService commentaireService = new CommentaireService();
+        MyDB db = MyDB.getInstance();
+        // MyDB db1 = new MyDB();
 
-        // Add actualites
-        actualite newActualite1 = new actualite(2,"Titre1", "Contenu1", "Categorie1", LocalDateTime.now(), "Image1");
-        actualite newActualite2 = new actualite(4,"Titre2", "Contenu2", "Categorie2", LocalDateTime.now(), "Image2");
+        System.out.println(db.hashCode());
+        // System.out.println(db1.hashCode());
 
-        // Add actualites to the database
-        actualiteService.ajouter(newActualite1);
-        actualiteService.ajouter(newActualite2);
 
-        // Add commentaires related to the actualites
-        commentaire newCommentaire1 = new commentaire(10, "John", "This is a test comment for Actualite 1.", LocalDateTime.now());
-        commentaire newCommentaire2 = new commentaire(11, "Alice", "Another test comment for Actualite 2.", LocalDateTime.now());
+//Posts p= new Posts("wiw","wiw");
+      // Posts p3= new Posts("wiw3","wiw3");
 
-        // Add commentaires to the database
-        commentaireService.ajouter(newCommentaire1);
-        commentaireService.ajouter(newCommentaire2);
+       // Posts p2= new Posts("wiw","wiw_edit");
+        ServicePosts sp=new ServicePosts();
 
-        System.out.println("New commentaires added: " + newCommentaire1 + ", " + newCommentaire2);
+        List<Posts> posts ;
+        try {
+            sp.afficher();
+            System.out.println("showed succefully");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ;
+
+
+
+        String input="not a bad word";
+        String output = BadWordFilter.getCensoredText(input);
+        System.out.println(output);
+
+
+/*
+        try {
+            sp.ajouter(p3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        try {
+            sp.modifier(p2);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+*/
+
+
     }
+
 }

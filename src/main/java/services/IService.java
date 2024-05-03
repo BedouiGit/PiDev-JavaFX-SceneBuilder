@@ -1,16 +1,29 @@
 package services;
 
-import entities.actualite;
+import entities.Comments;
+import entities.Posts;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface IService<T> {
-    public boolean ajouter (T t) throws SQLException;
-    public void modifier (T t) throws SQLException;
-    public void supprimer (T t) throws SQLException;
-    public List<T> afficher () throws SQLException;
+
+    void ajouter(T t) throws SQLException;
+
+    void modifier(T t) throws SQLException;
+
+    void supprimer(T t) throws SQLException;
 
 
-    List<actualite> recuperer() throws SQLException;
+    List<T> afficher() throws SQLException;
+
+
+    void UpdateLikes(int postId);
+
+    void addComment(Posts post, Comments comment) throws SQLException;
+
+    int getLikeCount(int postId) throws SQLException;
+
+    // Function to get total likes from the database
+    int getTotalLikesFromDatabase();
 }

@@ -1,0 +1,95 @@
+.right-form{
+    -fx-background-color:#f9f6fd;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .0px .4px .4px;
+}
+.left-form{
+    -fx-background-color:#fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .0px .4px .4px;
+}
+.close{
+    -fx-background-color:transparent;
+    -fx-cursor: hand;
+}
+.close:hover{
+    -fx-background-color: #e43440;
+}
+.textfield {
+    -fx-font-family:century gothic;
+    -fx-background:transparent;
+    -fx-color:#1990ea;
+    -fx-text-box-border: transparent;
+
+}
+
+.textfield:focused{
+    -fx-background-color:#fff;
+    -fx-border-color:linear-gradient(to bottom right,#2d658c,#2ca772);
+    -fx-border-width: .8px;
+    -fx-focus-color: transparent;
+}
+.login-btn{
+    -fx-background-color: #ffc73e;
+    -fx-background-radius:10px;
+    -fx-font-size:20px;
+    -fx-text-fill: black; /* Set the default font color */
+
+}
+.login-btn:hover{
+    -fx-background-color: black;
+    -fx-border-color: #ffc73e;
+    -fx-background-radius:20px;
+    -fx-font-size:20px;
+    -fx-text-fill: #ffc73e; /* Set the default font color */
+
+
+}
+.sign-btn {
+    -fx-background-color: #fff;
+    -fx-border-color: #ffc73e;
+    -fx-border-radius: 50px;
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffc73e; /* Set the default font color */
+}
+
+.sign-btn:hover {
+    -fx-background-color: #ffc73e;
+    -fx-border-color: #fff;
+    -fx-background-radius: 50px;
+    -fx-font-size: 20px;
+    -fx-text-fill: white; /* Change font color when hovering */
+}
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #ffc73e;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+
+}
+.radio-button .dot:selected {
+    -fx-background-color: #7F00FF; /* Color of the dot when selected */
+}
