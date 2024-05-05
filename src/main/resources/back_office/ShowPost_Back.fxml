@@ -154,10 +154,9 @@
                     </effect>
                 </ImageView>
                 <VBox alignment="CENTER" spacing="10" layoutX="972.0" layoutY="198.0" prefHeight="150.0">
-                    <Button fx:id="commentsView" onAction="#showComments" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #f00020; -fx-background-radius: 100;" text="View Comments" textFill="WHITE" />
+                    <Button fx:id="commentsView" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #f00020; -fx-background-radius: 100;" text="View Comments" textFill="WHITE" />
                     <Button fx:id="AddPostButton" onAction="#openAddPostInterface" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: #2A914D; -fx-background-radius: 100;" text="Add News" textFill="WHITE" />
                     <Button fx:id="showStatsButton" onAction="#showStats" mnemonicParsing="false" prefHeight="34.0" prefWidth="150.0" styleClass="btn-trans" text="Show Post Stats" >
-
                         <style>
                             -fx-background-color: #007bff; /* Blue color */
                             -fx-background-radius: 100; /* Rounded corners */

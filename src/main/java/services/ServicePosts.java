@@ -77,6 +77,8 @@ public class ServicePosts implements  IService<Posts>{
 
         List<Posts> postsList= new ArrayList<>();
 
+
+
         String req="select * from publication";
         Statement ste=con.createStatement();
         ResultSet res= ste.executeQuery(req);
@@ -93,22 +95,24 @@ public class ServicePosts implements  IService<Posts>{
         return postsList;
     }
 
-    public Posts getLatestPost() throws SQLException {
-        String query = "SELECT * FROM publication ORDER BY id DESC LIMIT 1";
+    public Posts getPost(int postId) throws SQLException {
+        String query = "SELECT * FROM publication WHERE id = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                Posts latestPost = new Posts();
-                latestPost.setId(rs.getInt("id"));
-                latestPost.setTitle(rs.getString("title"));
-                latestPost.setContent(rs.getString("contenu_pub"));
-                latestPost.setNbLikes(rs.getInt("likes"));
-                // Set other properties accordingly
-                return latestPost;
+            pstmt.setInt(1, postId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Posts post = new Posts();
+                    post.setId(rs.getInt("id"));
+                    post.setTitle(rs.getString("title"));
+                    post.setContent(rs.getString("contenu_pub"));
+                    post.setNbLikes(rs.getInt("likes"));
+                    return post;
+                }
             }
         }
-        return null; // Return null if no posts are found
+        return null;
     }
+
     @Override
     public void UpdateLikes(int postId) {
 
@@ -121,7 +125,7 @@ public class ServicePosts implements  IService<Posts>{
             throw new RuntimeException(e);
         }
     }
-    @Override
+        @Override
     public void addComment(Posts post, Comments comment) throws SQLException {
         String req = "INSERT INTO comment(publication_id, contenu, date_commentaire) VALUES (?, ?, ?)";
         try (PreparedStatement pre = con.prepareStatement(req)) {
@@ -129,7 +133,10 @@ public class ServicePosts implements  IService<Posts>{
             pre.setString(2, comment.getContent()); // Set the content of the comment
             pre.setTimestamp(3, Timestamp.valueOf(comment.getDateCommentaire())); // Set the date_commentaire
             pre.executeUpdate();
-        }}
+        }
+        // Set the content of the comment
+
+    }
 
     @Override
     public int getLikeCount(int postId) throws SQLException {
@@ -166,43 +173,8 @@ public class ServicePosts implements  IService<Posts>{
         }
         return totalLikes;
     }
-   /* public List<Posts> searchPost(String title) throws SQLException {
-        String query = "SELECT * FROM publication WHERE title LIKE ?";
-        List<Posts> searchResults = new ArrayList<>();
-        try (PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, "%" + title + "%");
-            try (ResultSet resultSet = pstmt.executeQuery()) {
-                while (resultSet.next()) {
-                    Posts post = new Posts();
-                    post.setId(resultSet.getInt("id"));
-                    post.setTitle(resultSet.getString("title"));
-                    post.setContent(resultSet.getString("contenu_pub"));
-                    post.setNbLikes(resultSet.getInt("likes"));
-                    searchResults.add(post);
-                }
-            }
-        }
-        return searchResults;
-    }
 
-    public List<Posts> sortPosts(String criteria, String sortOrder) throws SQLException {
-        String query = "SELECT * FROM publication ORDER BY " + criteria + " " + sortOrder;
-        List<Posts> sortedResults = new ArrayList<>();
-        try (PreparedStatement pstmt = con.prepareStatement(query);
-             ResultSet resultSet = pstmt.executeQuery()) {
-            while (resultSet.next()) {
-                Posts post = new Posts();
-                post.setId(resultSet.getInt("id"));
-                post.setTitle(resultSet.getString("title"));
-                post.setContent(resultSet.getString("contenu_pub"));
-                post.setNbLikes(resultSet.getInt("likes"));
-                sortedResults.add(post);
-            }
-        }
-        return sortedResults;
-    }
 
-*/
     // Function to get engagement levels from the database
     public int[] getEngagementLevels() {
         int highEngagementThreshold = 100;

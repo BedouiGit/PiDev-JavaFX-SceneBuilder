@@ -13,7 +13,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/front_office/AjouterPost.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/front_office/AfficherPost.fxml"));
         primaryStage.setTitle("nftun");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

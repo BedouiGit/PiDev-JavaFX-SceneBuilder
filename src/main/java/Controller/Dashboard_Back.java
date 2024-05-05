@@ -9,8 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -32,17 +30,7 @@ public class Dashboard_Back implements Initializable {
     private VBox postContainer;
     List<Posts> posts;
 
-    @FXML
-    private TextField searchBarEvents;
 
-    @FXML
-    private Button sortButton;
-    private ServicePosts servicePosts;
-    @FXML
-    private ComboBox<String> criteriaComBox;
-
-    @FXML
-    private ComboBox<String> sortOrderComBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
@@ -50,7 +38,6 @@ public class Dashboard_Back implements Initializable {
       //  loadPosts()
         refreshPosts();
     }
-
 
     // Méthode pour charger les publications
     private void loadPosts() {
@@ -123,52 +110,5 @@ public class Dashboard_Back implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
-    void showComments(ActionEvent event) {
-        try {
-            // Load the view that displays comments
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/back_office/ShowComments_back.fxml"));
-            Parent root = loader.load();
-
-            // Create a new stage
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-
-            // Show the stage
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle exception
-        }
-    }
-   /* @FXML
-    private void searchPosts() {
-        String searchText = searchBarEvents.getText();
-        try {
-            List<Posts> searchResults = servicePosts.searchPost(searchText);
-            // Update the UI with the search results
-            updateEventCards(searchResults);
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-        }
-    }
-
-    private void updateEventCards(List<Posts> searchResults) {
-        
-    }
-
-    @FXML
-    private void sortPosts() {
-        String critere = criteriaComBox.getValue();
-        String typeOfTri = sortOrderComBox.getValue();
-        try {
-            List<Posts> sortedResults = servicePosts.sortPosts(critere, typeOfTri);
-            // Update the UI with the sorted results
-            updateEventCards(sortedResults);
-        } catch (SQLException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-        }
-    }
 
 }
-*/}

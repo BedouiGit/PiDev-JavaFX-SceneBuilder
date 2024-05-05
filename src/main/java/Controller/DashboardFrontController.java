@@ -9,14 +9,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class DashboardFrontController {
-    public void OnFilsActualitésClicked(MouseEvent mouseEvent) {
 
+    public void OnFilsActualitésClicked(MouseEvent mouseEvent) {
 
 
         try {
 
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/front_office/AjouterPost.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/front_office/AfficherPost.fxml"));
             Parent root = fxmlLoader.load();
 
 
