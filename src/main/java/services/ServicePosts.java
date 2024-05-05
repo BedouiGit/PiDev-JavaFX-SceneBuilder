@@ -77,8 +77,6 @@ public class ServicePosts implements  IService<Posts>{
 
         List<Posts> postsList= new ArrayList<>();
 
-
-
         String req="select * from publication";
         Statement ste=con.createStatement();
         ResultSet res= ste.executeQuery(req);
@@ -125,7 +123,7 @@ public class ServicePosts implements  IService<Posts>{
             throw new RuntimeException(e);
         }
     }
-        @Override
+    @Override
     public void addComment(Posts post, Comments comment) throws SQLException {
         String req = "INSERT INTO comment(publication_id, contenu, date_commentaire) VALUES (?, ?, ?)";
         try (PreparedStatement pre = con.prepareStatement(req)) {
@@ -133,10 +131,7 @@ public class ServicePosts implements  IService<Posts>{
             pre.setString(2, comment.getContent()); // Set the content of the comment
             pre.setTimestamp(3, Timestamp.valueOf(comment.getDateCommentaire())); // Set the date_commentaire
             pre.executeUpdate();
-        }
-        // Set the content of the comment
-
-    }
+        }}
 
     @Override
     public int getLikeCount(int postId) throws SQLException {
@@ -173,8 +168,24 @@ public class ServicePosts implements  IService<Posts>{
         }
         return totalLikes;
     }
-
-
+    public List<Posts> searchPost(String content) throws SQLException {
+        String query = "SELECT * FROM publication WHERE contenu_pub LIKE ?";
+        List<Posts> searchResults = new ArrayList<>();
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setString(1, "%" + content + "%");
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    Posts post = new Posts();
+                    post.setId(resultSet.getInt("id"));
+                    post.setTitle(resultSet.getString("title"));
+                    post.setContent(resultSet.getString("contenu_pub"));
+                    post.setNbLikes(resultSet.getInt("likes"));
+                    searchResults.add(post);
+                }
+            }
+        }
+        return searchResults;
+    }
     // Function to get engagement levels from the database
     public int[] getEngagementLevels() {
         int highEngagementThreshold = 100;

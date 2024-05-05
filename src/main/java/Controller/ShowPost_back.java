@@ -2,6 +2,7 @@ package Controller;
 
 import entities.Posts;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,7 +41,7 @@ Dashboard_Back db;
         Posts post = new Posts();
         post.setId(1);
         post.setTitle("username");
-        post.setContent("aaaa");
+        post.setContent("edit");
         return post;
     }
 
@@ -88,7 +89,7 @@ Dashboard_Back db;
         try {
 
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/back_office/ShowComments_back.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/back_office/AddComments.fxml"));
             Parent root = fxmlLoader.load();
 
             // Get the controller instance

@@ -9,6 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,13 +34,28 @@ public class Dashboard_Back implements Initializable {
     List<Posts> posts;
 
 
+    @FXML
+    private TextField searchBarEvents;
+
+    @FXML
+    private Button sortButton;
+    private ServicePosts servicePosts;
+    @FXML
+    private ComboBox<String> criteriaComBox;
+
+    @FXML
+    private ComboBox<String> sortOrderComBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resourceBundle) {
         // Initialiser les publications lors du chargement de la vue
-      //  loadPosts()
+        //  loadPosts()
+        servicePosts = new ServicePosts();
         refreshPosts();
+        searchBarEvents.setOnKeyReleased(this::searchPosts);
+
     }
+
 
     // Méthode pour charger les publications
     private void loadPosts() {
@@ -45,8 +63,6 @@ public class Dashboard_Back implements Initializable {
 
 
             postContainer.getChildren().clear(); // Effacer les publications existantes
-
-
 
 
             ServicePosts ps = new ServicePosts();
@@ -75,6 +91,31 @@ public class Dashboard_Back implements Initializable {
 
     // Méthode pour rafraîchir les publications
 
+    private void searchPosts(KeyEvent event) {
+        try {
+            String searchText = searchBarEvents.getText();
+            List<Posts> searchResults = servicePosts.searchPost(searchText);
+            updateEventCards(searchResults);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateEventCards(List<Posts> searchResults) {
+        postContainer.getChildren().clear();
+        for (Posts post : searchResults) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/back_office/item.fxml"));
+                VBox vBox = fxmlLoader.load();
+                ShowPost_back showPost = fxmlLoader.getController();
+                showPost.setData(post);
+                showPost.setDashboardController(this);
+                postContainer.getChildren().add(vBox);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public void refreshPosts() {
         loadPosts(); // Appeler loadPosts() pour rafraîchir les publications
@@ -95,6 +136,7 @@ public class Dashboard_Back implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void showStats(ActionEvent event) {
         try {
@@ -111,4 +153,22 @@ public class Dashboard_Back implements Initializable {
         }
     }
 
+    @FXML
+    void showComments(ActionEvent event) {
+        try {
+            // Load the view that displays comments
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/back_office/ShowComments_back.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Show the stage
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+    }
 }

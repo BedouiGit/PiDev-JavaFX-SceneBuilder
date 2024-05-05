@@ -41,8 +41,7 @@ public class AddPost implements Initializable {
         Posts post = new Posts(content.getText(), "NFTNavigator");
         ServicePosts ps = new ServicePosts();
         ps.ajouter(post);
-        showBanner("News Added");
-        refreshPosts(); // Refresh posts after adding a new one
+
     }
 
     @Override
@@ -61,6 +60,8 @@ public class AddPost implements Initializable {
 
             for (Posts post : posts) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/front_office/AfficherPost.fxml"));
+
                 try {
                     VBox vBox = fxmlLoader.load();
                     ShowPost showPost = fxmlLoader.getController();
