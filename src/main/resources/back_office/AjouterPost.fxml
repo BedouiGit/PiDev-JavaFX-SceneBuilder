@@ -12,25 +12,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPost">
+<ScrollPane stylesheets="@../styles.css" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddPost">
    <content>
-      <VBox fx:id="postContainer" alignment="CENTER" prefHeight="400.0" prefWidth="300.0">
+      <VBox fx:id="postContainer" alignment="CENTER" prefHeight="409.0" prefWidth="333.0">
          <children>
             <ImageView fx:id="imgProfile1" fitHeight="64.0" fitWidth="66.0">
                <image>
                   <Image url="@../img/user.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="100.0" prefWidth="300.0" styleClass="post-background">
+            <VBox prefHeight="74.0" prefWidth="369.0" styleClass="post-background">
                <children>
                   <HBox alignment="CENTER" prefHeight="41.0" prefWidth="300.0" spacing="10">
                      <children>
-                        <TextField fx:id="content" prefHeight="30.0" prefWidth="200.0" promptText="Add news here..." styleClass="text-field">
+                        <TextField fx:id="content" prefHeight="49.0" prefWidth="167.0" promptText="Add news here..." styleClass="text-field">
                            <font>
                               <Font name="Segoe UI" size="12.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="AddPost" mnemonicParsing="false" onMouseClicked="#AddPost" prefHeight="20.0" prefWidth="50.0" text="Post" />
+                        <HBox spacing="10">
+                           <Button fx:id="AddImage" mnemonicParsing="false" onAction="#AddImage" onMouseClicked="#AddPost" prefHeight="26.0" prefWidth="82.0" text="AddImage" />
+                           <Button fx:id="AddPost" mnemonicParsing="false" onMouseClicked="#AddPost" prefHeight="26.0" prefWidth="40.0" text="Post" />
+                        </HBox>
                      </children>
                   </HBox>
                   <!-- Banner for "Post Done" -->

@@ -22,6 +22,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.sun.speech.freetts.Voice;
@@ -36,7 +37,8 @@ public class ShowPost {
     private Label username;
     @FXML
     private Label idPost;
-
+    @FXML
+    private ImageView imgPost;
     private Posts post;
 
     @FXML
@@ -86,6 +88,8 @@ public class ShowPost {
         post.setTitle(username.getText());
         post.setContent(content.getText());
         post.setNbLikes(Integer.parseInt(nbReactions.getText()));
+        post.setNbLikes(Integer.parseInt(nbReactions.getText()));
+
 
 
         return post;
@@ -167,38 +171,22 @@ public class ShowPost {
             content.setManaged(false);
         }
         nbReactions.setText(String.valueOf(post.getNbLikes()));
-    }
-
-
-    public void onReactionImgPressed(MouseEvent mouseEvent) {
-
-
-
-    }
-
-    public void onLikeContainerPressed(MouseEvent mouseEvent) {
-
-
-
-
-
-        if (currentReaction == Reactions.NON) {
-            setReaction(Reactions.LIKE);
+        String imagePath = "/img/" + post.getImage();
+        InputStream imageStream = getClass().getResourceAsStream(imagePath);
+        if (imageStream != null) {
+            Image image = new Image(imageStream);
+            imgPost.setImage(image);
         } else {
-            setReaction(Reactions.NON);
+            // Image par défaut si l'image spécifiée n'est pas trouvée
+            System.out.println("L'image n'a pas pu être chargée : " + imagePath);
         }
-
-        likePost(Integer.parseInt(idPost.getText()));
-
-
-
-
     }
+
+
+
+
     private void likePost(int postId) {
-
-        ServicePosts servicePosts=new ServicePosts();
-
-
+        ServicePosts servicePosts = new ServicePosts();
 
         Task<Void> task = new Task<Void>() {
             @Override
@@ -206,48 +194,61 @@ public class ShowPost {
                 // Simulate delay
                 Thread.sleep(1000);
 
-                servicePosts.UpdateLikes(postId);
-
+                servicePosts.incrementLikes(postId);
 
                 // Fetch updated like count from database
                 int newLikeCount = servicePosts.getLikeCount(postId);
+
                 // Update UI on JavaFX Application Thread
-                //  nbReactions.setText(String.valueOf(newLikeCount));
-
-                updateUI(newLikeCount);
-
-
+                Platform.runLater(() -> updateUI(newLikeCount));
 
                 return null;
             }
         };
 
+        new Thread(task).start();
+    }
 
-        task.setOnFailed(new EventHandler<WorkerStateEvent>() {
+    private void unlikePost(int postId) {
+        ServicePosts servicePosts = new ServicePosts();
+
+        Task<Void> task = new Task<Void>() {
             @Override
-            public void handle(WorkerStateEvent event) {
-                Throwable exception = task.getException();
-                if (exception != null) {
-                    exception.printStackTrace();
-                }
+            protected Void call() throws Exception {
+                // Simulate delay
+                Thread.sleep(1000);
+
+                servicePosts.DecrementLikes(postId);
+
+                // Fetch updated like count from database
+                int newLikeCount = servicePosts.getLikeCount(postId);
+
+                // Update UI on JavaFX Application Thread
+                Platform.runLater(() -> updateUI(newLikeCount));
+
+                return null;
             }
-        });
+        };
 
         new Thread(task).start();
     }
 
-
     private void updateUI(int likeCount) {
         // Update UI on JavaFX Application Thread
-        //  nbReactions.setText(String.valueOf(likeCount));
-        Platform.runLater(() -> nbReactions.setText(String.valueOf(likeCount)));
-
-
-
+        nbReactions.setText(String.valueOf(likeCount));
     }
 
+    public void onLikeContainerPressed(MouseEvent mouseEvent) {
+        if (currentReaction == Reactions.NON) {
+            setReaction(Reactions.LIKE);
+            likePost(Integer.parseInt(idPost.getText()));
+        } else {
+            setReaction(Reactions.NON);
+            unlikePost(Integer.parseInt(idPost.getText()));
+        }
+    }
 
-    public void setReaction(Reactions reaction){
+    public void setReaction(Reactions reaction) {
         currentReaction = reaction; // Update the currentReaction field
 
         Image image = new Image(getClass().getResourceAsStream(reaction.getImgSrc()));
@@ -255,18 +256,7 @@ public class ShowPost {
 
         reactionName.setText(reaction.getName());
         reactionName.setTextFill(Color.web(reaction.getColor()));
-
-
-
-        // nbReactions.setText(String.valueOf(post.getTotalReactions()));
     }
-
-    public void onLikeContainerMouseReleased(MouseEvent mouseEvent) {
-
-
-    }
-
-
 
     @FXML
     void OnCommentContainerClicked(MouseEvent event) {
@@ -322,6 +312,9 @@ public class ShowPost {
         }
     }
 
+    public void onReactionImgPressed(MouseEvent mouseEvent) {
+    }
 
-
+    public void onLikeContainerMouseReleased(MouseEvent mouseEvent) {
+    }
 }

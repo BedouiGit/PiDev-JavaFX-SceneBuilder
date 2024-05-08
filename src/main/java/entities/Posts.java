@@ -39,6 +39,7 @@ public class Posts {
     private int nbLikes;
     private int nbComments;
     private int nbShares;
+
     String  title ;
 
     public Posts(String text, String text1, String text2) {

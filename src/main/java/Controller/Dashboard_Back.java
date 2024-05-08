@@ -132,6 +132,8 @@ public class Dashboard_Back implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+            refreshPosts();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
