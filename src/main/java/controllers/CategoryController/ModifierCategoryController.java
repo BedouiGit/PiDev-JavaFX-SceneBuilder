@@ -31,14 +31,7 @@ public class ModifierCategoryController {
     private category category;
     private final CategoryService cs = new CategoryService();
 
-    @FXML
-    public void setCours(category category) {
-        this.category = category;
-        coursurl.setText(category.getPhotoUrl());
-        niveau.setText(category.getDescription());
-        nomcour.setText(category.getNom());
 
-    }
 
     @FXML
     void modifiercour(ActionEvent event) throws SQLException, IOException {
@@ -63,7 +56,7 @@ public class ModifierCategoryController {
             showAlert("Success", "Category modified successfully.");
 
             // Load the FXML file for the new page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Projets/Categories.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/Categories/Categories.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1550.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController.HomeController">
+    <children>
+        <HBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-2.0" prefHeight="100.0" prefWidth="1657.0">
+            <fx:include source="navbar.fxml" />
+        </HBox>
+
+        <ScrollPane AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <VBox alignment="CENTER" spacing="20">
+                <HBox alignment="CENTER" prefHeight="608.0" prefWidth="1520.0" spacing="20">
+                    <VBox alignment="CENTER" prefHeight="64.0" prefWidth="500.0" spacing="10">
+                        <Label fx:id="titleLabel" prefWidth="500.0" text="NFTUN" textFill="#663284">
+                            <font>
+                                <Font name="Arial Bold" size="80.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="descriptionLabel" prefWidth="500.0" text="Buy and sell digital art," textFill="#262428">
+                            <font>
+                                <Font name="Baskerville Old Face" size="25.0" />
+                            </font>
+                        </Label>
+
+                        <Label fx:id="collectionLabel" prefWidth="500.0" text="NFT,s collection" textFill="#262428">
+                            <font>
+                                <Font name="Baskerville Old Face" size="25.0" />
+                            </font>
+                        </Label>
+
+                        <Label prefWidth="500.0" text="&quot;There is enough digital artworks available online &#10; to help you put together crypto currency website." textFill="#384454">
+                            <font>
+                                <Font name="Calibri Light" size="20.0" />
+                            </font>
+                        </Label>
+
+                        <Button fx:id="connecter" mnemonicParsing="false" onAction="#navigateToParties" prefWidth="138.0" text="Se connecter" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <style>
+                                -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #765CA9, #A176D2);
+                                -fx-background-radius: 10;
+                                -fx-border-radius: 10;
+                            </style>
+                        </Button>
+                    </VBox>
+
+                    <ImageView fx:id="bannerImageView" fitHeight="481.0" fitWidth="672.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 10 100 10 10;">
+                        <image>
+                            <Image url="@/imges/banner/banner-10.png" />
+                        </image>
+                    </ImageView>
+                </HBox>
+
+
+            </VBox>
+
+        </ScrollPane>
+
+        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1657.0" AnchorPane.bottomAnchor="0.0">
+            <fx:include source="Footer.fxml" />
+        </HBox>
+    </children>
+</AnchorPane>

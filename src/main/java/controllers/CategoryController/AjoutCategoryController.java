@@ -1,7 +1,9 @@
 package controllers.CategoryController;
 
+import com.twilio.Twilio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import java.io.File;
 import java.io.IOException;
@@ -19,28 +21,21 @@ import javafx.scene.image.ImageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import utils.NavigationUtil;
+import services.smsService;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
 
 
 public class AjoutCategoryController {
-    @FXML
-    private TextField idCategoryfx;
 
     @FXML
     private TextField nameCategoryfx;
 
     @FXML
     private TextField descCategoryfx;
-
-
-
-    @FXML
-    private Button GoBack;
-
-
 
     @FXML
     private ImageView imageView;
@@ -49,42 +44,72 @@ public class AjoutCategoryController {
 
     private final CategoryService SC = new CategoryService();
 
+    private static final String ACCOUNT_SID = "AC0002e7c9fb46359fc7c0884c8313a819";
+    private static final String AUTH_TOKEN = "f360ede7d59e486841fb22e444801015";
+
+    // Twilio phone number
+    private static final String TWILIO_NUMBER = "+12563339571";
+
+
     @FXML
     private void goBack(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Projets/Homepage.fxml"));
-            Scene scene = new Scene(root);
 
-            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+        try {
+            NavigationUtil.navigateTo("/fxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void sendPaymentConfirmationSMS(String name) {
+        // Formater le message SMS
+        String messageSMS = "A new Category is added to our NFTUN SITE NAME "
+                + name +" You can visit our application for more details ";
+
+        // Initialiser Twilio
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+
+
+        // Envoyer le SMS
+        Message message = Message.creator(
+                        new PhoneNumber("+21652715523" ),  // Ajoutez le préfixe international
+                        new PhoneNumber(TWILIO_NUMBER),  // Numéro de téléphone Twilio
+                        messageSMS)
+                .create();
+
+        System.out.println("SMS envoyé : " + message.getSid());
+    }
+
     @FXML
     void handleAjouter(ActionEvent event) {
+
+
         if (validateFields()) {
-            int id = Integer.parseInt(idCategoryfx.getText());
             String name = nameCategoryfx.getText();
             String description = descCategoryfx.getText();
             String photoUrl = imgName;
 
-            category newCategory = new category(id, name, description, photoUrl);
+
+
+
+            category newCategory = new category(0, name, description, photoUrl);
 
             try {
                 SC.ajouter(newCategory);
                 showAlert("Success", "Category added successfully.");
 
                 // Load the FXML file for the new page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Projets/Categories.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/Categories/DisplayCategories.fxml"));
                 Parent root = loader.load();
 
                 // Get the stage from the event source
                 Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
+
+                sendPaymentConfirmationSMS(name);
+
             } catch (SQLException | IOException e) {
                 showAlert("Error", "Failed to add category: " + e.getMessage());
             }
@@ -93,20 +118,13 @@ public class AjoutCategoryController {
 
 
     private boolean validateFields() {
-        String idText = idCategoryfx.getText();
+
         String name = nameCategoryfx.getText();
         String description = descCategoryfx.getText();
         String photoUrl = imgName;
 
-        if (idText.isEmpty() || !Pattern.matches("\\d+", idText)) {
-            showAlert("Error", "Please enter a valid ID.");
-            return false;
-        }
-        int id = Integer.parseInt(idText);
-        if (id <= 0 || id > 1000) {
-            showAlert("Error", "ID must be between 1 and 1000.");
-            return false;
-        }
+
+
 
         if (name.isEmpty() || name.length() > 50 || !Pattern.matches("[a-zA-Z\\s]+", name)) {
             showAlert("Error", "Please enter a valid category name (maximum 50 characters, letters and spaces only).");
@@ -126,10 +144,6 @@ public class AjoutCategoryController {
         return true;
     }
 
-    private boolean isValidURL(String url) {
-        String urlRegex = "^(https?|ftp)://.+";
-        return Pattern.matches(urlRegex, url);
-    }
 
 
     private void showAlert(String title, String message) {
@@ -147,16 +161,32 @@ public class AjoutCategoryController {
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
-            String destinationDirectory = "C:\\xampp\\htdocs\\img";
+            // Get the path of your source directory
+            String sourceDirectory = System.getProperty("user.dir");
+
+            sourceDirectory = sourceDirectory + "/uploadedimage";
+
+            // Define a new directory within your source directory to save images
+            String destinationDirectory = sourceDirectory + File.separator + "img";
+
+            // Create the directory if it doesn't exist
+            File destDir = new File(destinationDirectory);
+            if (!destDir.exists()) {
+                destDir.mkdirs();
+            }
+
             String fileName = file.getName();
             Path destinationPath = new File(destinationDirectory, fileName).toPath();
             try {
+                // Save the file to the destination directory
                 Files.copy(file.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("File uploaded successfully to: " + destinationPath);
-                imgName = fileName;
+
+                // Set the image view
+                imgName = destinationPath.toString();
                 Image image = new Image(file.toURI().toString());
                 imageView.setImage(image);
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println("Error uploading file: " + e.getMessage());
                 showAlert("Error", "Error uploading file: " + e.getMessage());
             }
@@ -164,4 +194,5 @@ public class AjoutCategoryController {
             System.out.println("No file selected.");
         }
     }
+
 }
