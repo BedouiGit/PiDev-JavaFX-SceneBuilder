@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import models.NFT;
-import services.NFTService;
+import services.NFTServicePub;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import java.nio.file.StandardCopyOption;
 
 public class BackFormNFT {
 
-    private final NFTService ps = new NFTService();
+    private final NFTServicePub ps = new NFTServicePub();
 
     @FXML
     private Label InscriMessageLabel;

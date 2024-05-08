@@ -1,8 +1,8 @@
-package interfaces;
+package services;
 
 import java.util.List;
 
-public interface IService <T>{
+public interface IServicePub<T>{
 
     //CRUD
     void add(T t);

@@ -1,6 +1,6 @@
 package controllers.Tags;
 
-import entities.Tags;
+import models.Tags;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

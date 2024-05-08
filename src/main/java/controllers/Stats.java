@@ -2,7 +2,6 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +17,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import models.Commande;
-import services.CommandeService;
+import services.CommandeServicePub;
 
 public class Stats implements Initializable {
 
@@ -27,7 +26,7 @@ public class Stats implements Initializable {
 
     private Image image1 = new Image("file:/C:/Users/Admin/Desktop/Java_badbud/nfttun/img/131096-down-arrow-png-free-photo.png");
     private Image image2 = new Image("file:/C:/Users/Admin/Desktop/Java_badbud/nfttun/img/131096-down-arrow-png-free-photo.png");
-  private CommandeService sp = new CommandeService();
+  private CommandeServicePub sp = new CommandeServicePub();
 
 
         private void fetchPredictionAndUpdateImage() {

@@ -1,8 +1,6 @@
 package services;
 
-import interfaces.IService;
 import models.Commande;
-import models.NFT;
 import util.MaConnexion;
 
 import java.sql.*;
@@ -10,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandeService implements IService<Commande> {
+public class CommandeServicePub implements IServicePub<Commande> {
 
 
     Connection cnx = MaConnexion.getInstance().getCnx();

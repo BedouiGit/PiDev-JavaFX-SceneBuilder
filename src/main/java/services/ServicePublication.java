@@ -1,6 +1,6 @@
 package services;
 
-import entities.publication;
+import models.publication;
 import utils.MyDB;
 
 import java.sql.*;

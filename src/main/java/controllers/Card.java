@@ -4,11 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import models.NFT;
-import models.NFT;
-import services.NFTService;
-import java.util.List;
+import services.NFTServicePub;
 
 public class Card {
 
@@ -24,7 +21,7 @@ public class Card {
         @FXML
         private Label CardNftPrice;
 
-        private final NFTService ps = new NFTService();
+        private final NFTServicePub ps = new NFTServicePub();
 
         private String[] colors = {"B9E5FF","BDB2FE","FB9AA8","FF5056"};
 

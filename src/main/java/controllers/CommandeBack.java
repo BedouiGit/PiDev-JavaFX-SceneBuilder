@@ -17,14 +17,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Commande;
-import services.CommandeService;
+import services.CommandeServicePub;
 
 import java.io.File;
 import java.io.IOException;
@@ -187,7 +185,7 @@ public class CommandeBack {
     void removeCommande(ActionEvent event) {
         if(selectedCommande != null)
         {
-            CommandeService sp = new CommandeService();
+            CommandeServicePub sp = new CommandeServicePub();
             sp.delete(selectedCommande);
 
             displayAllProductsInTableView();
@@ -201,7 +199,7 @@ public class CommandeBack {
         String search = searchField.getText();
 
         try {
-            CommandeService serviceCommande = new CommandeService();
+            CommandeServicePub serviceCommande = new CommandeServicePub();
             List<Commande> produits;
             if(search.isEmpty()){
                 produits = serviceCommande.getAll();
@@ -245,7 +243,7 @@ public class CommandeBack {
         TotalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
         WalletCo.setCellValueFactory(new PropertyValueFactory<>("wallet"));
 
-        CommandeService serviceproduit = new CommandeService(); // Pass the connection object
+        CommandeServicePub serviceproduit = new CommandeServicePub(); // Pass the connection object
         List<Commande> commandes = serviceproduit.getAll();
         ObservableList<Commande> produitObservableList = FXCollections.observableArrayList(commandes);
         tableView.setItems(produitObservableList);

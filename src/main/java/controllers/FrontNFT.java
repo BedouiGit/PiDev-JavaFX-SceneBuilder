@@ -1,17 +1,13 @@
 package controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javafx.stage.Stage;
 import models.NFT;
-import services.NFTService;
+import services.NFTServicePub;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
@@ -70,11 +66,11 @@ public class FrontNFT {
     }
 
     private List<NFT> topnfts() {
-        NFTService nftService = new NFTService();
+        NFTServicePub nftService = new NFTServicePub();
         return nftService.getAll(200);
     }
     private List<NFT> NFTlist() {
-        NFTService nftService = new NFTService();
+        NFTServicePub nftService = new NFTServicePub();
         return nftService.getAll();
     }
 }

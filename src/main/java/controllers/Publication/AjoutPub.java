@@ -1,6 +1,6 @@
 package controllers.Publication;
 
-import entities.publication;
+import models.publication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

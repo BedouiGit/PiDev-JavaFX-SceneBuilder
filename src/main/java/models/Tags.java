@@ -1,4 +1,6 @@
-package entities;
+package models;
+import models.publication;
+
 import java.util.HashSet;
 import java.util.Set;
 public class Tags {

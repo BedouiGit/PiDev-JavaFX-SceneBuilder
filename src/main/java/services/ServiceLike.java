@@ -1,6 +1,6 @@
 package services;
 
-import entities.Like;
+import models.Like;
 import utils.MyDB;
 
 import java.sql.*;

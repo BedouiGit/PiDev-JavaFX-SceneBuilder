@@ -1,6 +1,6 @@
 package controllers.Publication;
 
-import entities.publication;
+import models.publication;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

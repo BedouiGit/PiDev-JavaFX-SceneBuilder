@@ -14,12 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import models.NFT;
-import services.NFTService;
+import services.NFTServicePub;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -132,7 +129,7 @@ public class NFTBack {
     void removeProduct(ActionEvent event) {
         if(selectedNFT != null)
         {
-            NFTService sp = new NFTService();
+            NFTServicePub sp = new NFTServicePub();
             sp.delete(selectedNFT);
 
             displayAllProductsInTableView();
@@ -146,7 +143,7 @@ public class NFTBack {
         String search = searchField.getText();
 
         try {
-            NFTService serviceNFT = new NFTService();
+            NFTServicePub serviceNFT = new NFTServicePub();
             List<NFT> produits;
             if(search.isEmpty()){
                 produits = serviceNFT.getAll();
@@ -220,7 +217,7 @@ public class NFTBack {
             }
         });
 
-        NFTService serviceproduit = new NFTService();
+        NFTServicePub serviceproduit = new NFTServicePub();
         List<NFT> nfts = serviceproduit.getAll();
         ObservableList<NFT> produitObservableList = FXCollections.observableArrayList(nfts);
         tableView.setItems(produitObservableList);

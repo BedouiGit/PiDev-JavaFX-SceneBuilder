@@ -1,6 +1,6 @@
 package services;
 
-import entities.Tags;
+import models.Tags;
 import utils.MyDB;
 
 import java.sql.*;

@@ -1,4 +1,4 @@
-package entities;
+package models;
 
 import java.util.Arrays;
 import java.util.HashSet;

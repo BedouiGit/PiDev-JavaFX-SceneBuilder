@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -29,6 +30,10 @@ public class FxMain extends Application {
 
         loader = new FXMLLoader(getClass().getResource("/Back/Dashboard.fxml"));
         mainLayout = loader.load();
+
+        // Load and set the application icon
+        Image icon = new Image("/imges/logo/nftlogo.png");
+        stage.getIcons().add(icon);
 
 
         stage.show();

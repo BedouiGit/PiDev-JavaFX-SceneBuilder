@@ -11,8 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import models.Commande;
-import models.NFT;
-import services.CommandeService;
+import services.CommandeServicePub;
 
 import java.io.IOException;
 
@@ -63,7 +62,7 @@ public class BackFormCommande {
 
     }
 
-    private final CommandeService cs = new CommandeService();
+    private final CommandeServicePub cs = new CommandeServicePub();
 
 
     @FXML

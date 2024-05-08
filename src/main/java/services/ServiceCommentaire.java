@@ -1,6 +1,6 @@
 package services;
 
-import entities.Commentaire;
+import models.Commentaire;
 import utils.MyDB;
 
 import java.sql.*;

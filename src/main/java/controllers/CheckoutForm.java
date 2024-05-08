@@ -8,8 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import models.Commande;
 import models.NFT;
-import services.CommandeService;
-import services.NFTService;
+import services.CommandeServicePub;
+import services.NFTServicePub;
 import javafx.scene.image.ImageView;
 
 public class CheckoutForm {
@@ -31,8 +31,8 @@ public class CheckoutForm {
 
 
     private NFT nft;
-    private final NFTService ps = new NFTService();
-    private final CommandeService cs = new CommandeService();
+    private final NFTServicePub ps = new NFTServicePub();
+    private final CommandeServicePub cs = new CommandeServicePub();
 
     public void initData(NFT nft) {
         this.nft = ps.getOne(nft.getId());

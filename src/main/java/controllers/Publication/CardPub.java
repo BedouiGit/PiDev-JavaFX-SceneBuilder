@@ -1,7 +1,7 @@
 package controllers.Publication;
 
-import entities.Commentaire;
-import entities.publication;
+import models.Commentaire;
+import models.publication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import services.ServiceCommentaire;
 import services.ServicePublication;
 import test.FxMain;
-import test.MainFX;
 
 import java.io.IOException;
 import java.io.InputStream;
