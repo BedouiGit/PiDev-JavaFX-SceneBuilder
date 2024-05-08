@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="CardBoxID" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="200.0" spacing="15.0" style="-fx-background-radius: 15;" styleClass="shadow" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Card">
+   <children>
+      <ImageView fx:id="CardImage" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../Downloads/DSC07165_1_1(2).jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER_LEFT" prefHeight="185.0" prefWidth="186.0">
+         <children>
+            <Label fx:id="CardNftName" prefHeight="24.0" prefWidth="108.0" text="nft name">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="CardNftPrice" prefHeight="17.0" prefWidth="186.0" text="nft name">
+               <font>
+                  <Font name="Arial" size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</HBox>

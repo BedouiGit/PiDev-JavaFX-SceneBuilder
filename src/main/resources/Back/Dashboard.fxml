@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1500.0" stylesheets="@../css/styleDashbord.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="63.0" onMouseClicked="#showHome" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <Label onMouseClicked="#showHome" prefHeight="67.0" prefWidth="233.0" text="NFTUN" textFill="#3b118f">
+               <font>
+                  <Font name="Constantia" size="32.0" />
+               </font>
+            </Label>
+            <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="42.0" prefWidth="7.0" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="290.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="52.0" prefWidth="131.0" text="Ismail Triki" textFill="#23118f">
+                     <font>
+                        <Font name="Gabriola" size="25.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/405743600_7312059642151899_8736970146334239647_n.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="720.0" prefWidth="250.0" styleClass="white-background" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label prefHeight="52.0" prefWidth="131.0" text="Dashboard" textFill="#3b118f">
+                     <font>
+                        <Font name="Gabriola" size="21.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" top="15.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="36.0" prefWidth="250.0">
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="30.0" onMousePressed="#showHome" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/home icon.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showHome" text="Acceuil" textFill="#3b118f">
+                           <font>
+                              <Font name="Cambria" size="25.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/EDIT%20ICON.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" text="Admin" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="17.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showDisplayPublications" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/pub icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showDisplayPublications" text="Publications" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="20.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="138.0" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showDisplayPublications" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/pub icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showDisplayTags" text="Tags" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="20.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showAddPublication" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ajout%20icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showAddPublication" text="Ajouter Publication" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="19.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="187.0" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showAddPublication" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ajout%20icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showAddTag" text="Ajouter Tag" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="19.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showAddPublication" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ajout%20icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showAddNFT" text="NFT" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="19.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showAddPublication" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ajout%20icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#showAddCommande" text="Commande" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="19.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="36.0" onMousePressed="#showAddPublication" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ajout%20icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#Prediction" text="Sales Prediction" textFill="#3b118f">
+                           <font>
+                              <Font name="Candara" size="19.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="label-like-button" />
+                              <String fx:value="image-view" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
