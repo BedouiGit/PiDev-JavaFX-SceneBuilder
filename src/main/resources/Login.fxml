@@ -24,7 +24,7 @@
             <Image url="@images/NFTUN.png" />
          </image>
       </ImageView>
-      <Label fx:id="invalidText" contentDisplay="CENTER" layoutX="352.0" layoutY="322.0" prefHeight="54.0" prefWidth="239.0">
+      <Label fx:id="invalidText" contentDisplay="CENTER" layoutX="392.0" layoutY="332.0" prefHeight="54.0" prefWidth="239.0" textFill="#efeaea">
          <font>
             <Font size="14.0" />
          </font>

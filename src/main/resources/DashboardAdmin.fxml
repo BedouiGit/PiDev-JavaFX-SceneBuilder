@@ -18,7 +18,6 @@
                     <children>
                         <Button layoutX="23.0" layoutY="172.0" mnemonicParsing="false" onAction="#openUsersList" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="List User" textFill="#fffdfd" />
                         <Button layoutX="22.0" layoutY="213.0" mnemonicParsing="false" onAction="#addTep" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="Add User" textFill="WHITE" />
-
                         <ImageView fitHeight="150.0" fitWidth="175.0" layoutX="-7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/NFTUN.png" />
@@ -33,7 +32,6 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="749.0" style="-fx-background-color: #E8F9FD;">
                     <children>
-
                         <PieChart fx:id="pieChart" layoutX="35.0" layoutY="14.0" prefHeight="282.0" prefWidth="603.0" title="Active  / Inactive Users" />
                         <LineChart fx:id="lineChart" layoutX="4.0" layoutY="284.0" prefHeight="306.0" prefWidth="646.0" title="">
                     <xAxis>

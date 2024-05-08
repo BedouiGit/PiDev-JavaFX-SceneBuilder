@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import services.ServicePublication;
+import services.ServicePublicationArticle;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class editPub {
 
     private File imageFile; // For storing the selected image file
     private publication currentPublication; // The publication being edited
-    private ServicePublication servicePublication = new ServicePublication();
+    private ServicePublicationArticle servicePublication = new ServicePublicationArticle();
 
     public void setPublication(publication pub) {
         currentPublication = pub;

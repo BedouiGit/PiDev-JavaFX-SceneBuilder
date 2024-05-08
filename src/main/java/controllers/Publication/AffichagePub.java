@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import services.ServicePublication;
+import services.ServicePublicationArticle;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ public class AffichagePub {
 
     @FXML
     private TextField searchField;
-    private final ServicePublication servicePublication = new ServicePublication();
+    private final ServicePublicationArticle servicePublication = new ServicePublicationArticle();
 
     @FXML
     private void initialize() {

@@ -21,8 +21,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import services.ServiceCommentaire;
-import services.ServiceLike;
+import services.ServiceCommentaireArticle;
+import services.ServiceLikeArticle;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,8 +51,8 @@ public class DetailPublication {
     private AnchorPane detailsPubPane;
     private publication currentPublication;
 
-    private ServiceCommentaire serviceCommentaire = new ServiceCommentaire();
-    private ServiceLike serviceLike = new ServiceLike();
+    private ServiceCommentaireArticle serviceCommentaire = new ServiceCommentaireArticle();
+    private ServiceLikeArticle serviceLike = new ServiceLikeArticle();
 
 
     public void setPublication(publication pub) {

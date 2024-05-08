@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import services.ServiceTags;
+import services.ServiceTagsArticle;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class AjoutTags {
                     String imageName = destinationPath.getFileName().toString();
 
                     Tags pub = new Tags(titre, description, imageName);
-                    ServiceTags servicePublication = new ServiceTags();
+                    ServiceTagsArticle servicePublication = new ServiceTagsArticle();
                     servicePublication.ajouter(pub);
 
                     showAlert(Alert.AlertType.INFORMATION, "Succès", "La tag a été ajoutée avec succès.");

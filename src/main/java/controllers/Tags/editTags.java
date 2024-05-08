@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import services.ServiceTags;
+import services.ServiceTagsArticle;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public class editTags {
 
     private File imageFile; // For storing the selected image file
     private Tags currentPublication; // The publication being edited
-    private ServiceTags serviceTags = new ServiceTags();
+    private ServiceTagsArticle serviceTags = new ServiceTagsArticle();
 
     public void setTags(Tags pub) {
         currentPublication = pub;

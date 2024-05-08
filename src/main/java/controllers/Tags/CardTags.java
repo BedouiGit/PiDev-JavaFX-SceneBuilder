@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import services.ServiceTags;
+import services.ServiceTagsArticle;
 import test.MainFX;
 
 import java.io.IOException;
@@ -85,7 +85,7 @@ public class CardTags {
     @FXML
     private void handleDeleteAction(ActionEvent event) {
         try {
-            ServiceTags serviceTags = new ServiceTags();
+            ServiceTagsArticle serviceTags = new ServiceTagsArticle();
             serviceTags.supprimer(currentPublication); // Delete the publication
             System.out.println("Tag deleted successfully");
 

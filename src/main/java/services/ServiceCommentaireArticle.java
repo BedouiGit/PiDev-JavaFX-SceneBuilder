@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceCommentaire implements IService<Commentaire> {
+public class ServiceCommentaireArticle implements IServiceArticle<Commentaire> {
     private Connection con;
 
-    public ServiceCommentaire() {
+    public ServiceCommentaireArticle() {
         con = MyDB.getInstance().getConnection();
     }
 

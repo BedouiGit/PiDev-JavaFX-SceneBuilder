@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import services.ServicePublication;
+import services.ServicePublicationArticle;
 
 import java.io.File;
 import java.io.IOException;
@@ -75,7 +75,7 @@ public class AjoutPub {
                     String imageName = destinationPath.getFileName().toString();
 
                     publication pub = new publication(idUser, titre, description, imageName, date);
-                    ServicePublication servicePublication = new ServicePublication();
+                    ServicePublicationArticle servicePublication = new ServicePublicationArticle();
                     servicePublication.ajouter(pub);
                     Notifications notification = Notifications.create()
                             .title("Title")

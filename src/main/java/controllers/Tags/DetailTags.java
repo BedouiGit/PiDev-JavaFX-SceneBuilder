@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import services.ServiceLike;
+import services.ServiceLikeArticle;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +42,7 @@ public class DetailTags {
     private Tags currentPublication;
 
 
-    private ServiceLike serviceLike = new ServiceLike();
+    private ServiceLikeArticle serviceLike = new ServiceLikeArticle();
 
 
     public void setPublication(Tags pub) {

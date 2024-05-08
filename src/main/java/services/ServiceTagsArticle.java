@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceTags implements IService<Tags> {
+public class ServiceTagsArticle implements IServiceArticle<Tags> {
     private Connection con;
 
-    public ServiceTags() {
+    public ServiceTagsArticle() {
         con = MyDB.getInstance().getConnection();
     }
 

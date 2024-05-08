@@ -3,7 +3,11 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import models.Role;
 
 import java.io.IOException;
 
@@ -116,6 +120,29 @@ public class Dashboard {
             e.printStackTrace();
             // Handle the exception, for example, by showing an error message
         }
+    }
+    @FXML
+    void NavigateToCategory(){
+        try {
+            Node act = FXMLLoader.load(getClass().getResource("/fxml/Admin/ListcategoryAdmin.fxml"));
+            mainContainer.setCenter(act);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, for example, by showing an error message
+        }
+
+    }
+    public void addTep()throws IOException  {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/addUserByAdmin.fxml"));
+        Parent root = loader.load();
+        addUserByAdmin addController = loader.getController(); // Get the controller instance associated with the FXML
+        Role role = Role.ROLE_USER;
+        addController.initData(role); // Call initData on the correct controller instance
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+        newStage.show();
+
+
     }
 
 

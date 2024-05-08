@@ -14,8 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import services.ServiceCommentaire;
-import services.ServicePublication;
+import services.ServiceCommentaireArticle;
+import services.ServicePublicationArticle;
 import test.FxMain;
 
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class CardPub {
     private ImageView warningIcon;
     private publication currentPublication;
     private AffichagePub affichagePubController;
-    private ServiceCommentaire serviceCommentaire = new ServiceCommentaire();
+    private ServiceCommentaireArticle serviceCommentaire = new ServiceCommentaireArticle();
 
 
     public void setAffichagePubController(AffichagePub controller) {
@@ -97,7 +97,7 @@ public class CardPub {
     @FXML
     private void handleDeleteAction(ActionEvent event) {
         try {
-            ServicePublication servicePublication = new ServicePublication();
+            ServicePublicationArticle servicePublication = new ServicePublicationArticle();
             servicePublication.supprimer(currentPublication); // Delete the publication
             System.out.println("Publication deleted successfully");
 

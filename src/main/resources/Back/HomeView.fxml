@@ -5,18 +5,27 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="723.0" prefWidth="1323.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeView">
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<AnchorPane prefHeight="723.0" prefWidth="1323.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardAdmin">
    <children>
       <ScrollPane layoutX="28.0" prefHeight="723.0" prefWidth="1322.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="813.0" prefWidth="1254.0">
-               <children>
-                  <ImageView fitHeight="903.0" fitWidth="1383.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/bkg2.png" />
-                     </image>
-                  </ImageView>
-               </children>
+              <children>
+
+                  <PieChart fx:id="pieChart" layoutX="35.0" layoutY="14.0" prefHeight="282.0" prefWidth="603.0" title="Active  / Inactive Users" />
+                  <LineChart fx:id="lineChart" layoutX="4.0" layoutY="284.0" prefHeight="306.0" prefWidth="646.0" title="Users by Address">
+                      <xAxis>
+                          <CategoryAxis side="BOTTOM" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis side="LEFT" />
+                      </yAxis>
+                  </LineChart>
+              </children>
             </AnchorPane>
         </content>
       </ScrollPane>

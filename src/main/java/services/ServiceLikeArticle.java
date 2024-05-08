@@ -7,10 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceLike implements IService<Like> {
+public class ServiceLikeArticle implements IServiceArticle<Like> {
     private Connection con;
 
-    public ServiceLike() {
+    public ServiceLikeArticle() {
         con = MyDB.getInstance().getConnection();
     }
 

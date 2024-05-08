@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import services.ServiceTags;
+import services.ServiceTagsArticle;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ public class AffichageTags {
 
     @FXML
     private TextField searchField;
-    private final ServiceTags serviceTags = new ServiceTags();
+    private final ServiceTagsArticle serviceTags = new ServiceTagsArticle();
 
     @FXML
     private void initialize() {
