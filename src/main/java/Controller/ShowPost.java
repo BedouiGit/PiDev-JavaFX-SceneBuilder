@@ -1,6 +1,5 @@
 package Controller;
 
-import API.MailerAPI;
 import entities.Posts;
 import entities.Reactions;
 import javafx.application.Platform;
@@ -22,11 +21,6 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ResourceBundle;
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
 
 public class ShowPost {
 
@@ -37,8 +31,8 @@ public class ShowPost {
     private Label username;
     @FXML
     private Label idPost;
-    @FXML
-    private ImageView imgPost;
+
+
     private Posts post;
 
     @FXML
@@ -49,7 +43,6 @@ public class ShowPost {
     @FXML
     private Label nbReactions;
 
-    private Voice voice;
 
     @FXML
     private ImageView imgReaction;
@@ -62,12 +55,9 @@ public class ShowPost {
 
     private long startTime = 0;
     private Reactions currentReaction=Reactions.NON;
-    private AddPost AddPostController; // Référence au contrôleur Dashboard_Back
 
     // Méthode pour définir la référence au contrôleur Dashboard_Back
-    public void setAddPostController(AddPost AddPostController) {
-        this.AddPostController = AddPostController;
-    }
+
 
     public void setContent(String cont) {
         this.content.setText(cont);
@@ -78,86 +68,12 @@ public class ShowPost {
     }
 
     private Posts getPost(){
-
-
-
         Posts post = new Posts();
-
-
-        post.setId(Integer.parseInt(idPost.getText()));
-        post.setTitle(username.getText());
-        post.setContent(content.getText());
-        post.setNbLikes(Integer.parseInt(nbReactions.getText()));
-        post.setNbLikes(Integer.parseInt(nbReactions.getText()));
-
-
-
+        post.setId(1);
+        post.setTitle("admin");
+        post.setContent("aaaa");
         return post;
     }
-
-
-
-    @FXML
-    public void initialize() {
-        // Set the FreeTTS voice properties
-        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-
-        // Get the default voice
-        VoiceManager voiceManager = VoiceManager.getInstance();
-        voice = voiceManager.getVoice("kevin");
-        if (voice != null) {
-            voice.allocate();
-        } else {
-            System.err.println("Cannot find voice: kevin");
-        }
-
-        // Add event handler for double-click on content label
-        content.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getClickCount() == 2) { // Check for double-click
-                // Get the post details
-                String postTitle = username.getText();
-                String postContent = content.getText();
-                String likeCount = nbReactions.getText();
-
-                // Construct the phrase to be spoken
-                String phrase = String.format("Post by %s. Content: %s. Number of likes: %s.", postTitle, postContent, likeCount);
-
-                // Speak the phrase
-                if (voice != null) {
-                    voice.speak(phrase);
-                } else {
-                    System.err.println("Cannot find voice: kevin");
-                }
-            }
-        });
-    }
-
-    @FXML
-    void PostWithVoice(MouseEvent event) {
-        // Get the post content
-        String postContent = content.getText();
-
-        // Speak the post content
-        if (voice != null) {
-            voice.speak(postContent);
-        } else {
-            System.err.println("Cannot find voice: kevin");
-        }
-    }
-
-    @FXML
-    void onEmailImageClicked(MouseEvent event) {
-        String recipientEmail = "sara.hammouda@esprit.tn";
-        String subject =  post.getTitle(); // Use post title as the email subject
-        String content = post.getContent(); // Use post content as the email content
-
-        // Replace with your Mailtrap credentials
-        String username = "24e2e97c986da6";
-        String password = "516b848d7e79db";
-
-        MailerAPI.sendMail(username, password, recipientEmail, subject, content);
-    }
-
 
 
     public void setData(Posts post){
@@ -171,84 +87,82 @@ public class ShowPost {
             content.setManaged(false);
         }
         nbReactions.setText(String.valueOf(post.getNbLikes()));
-        String imagePath = "/img/" + post.getImage();
-        InputStream imageStream = getClass().getResourceAsStream(imagePath);
-        if (imageStream != null) {
-            Image image = new Image(imageStream);
-            imgPost.setImage(image);
-        } else {
-            // Image par défaut si l'image spécifiée n'est pas trouvée
-            System.out.println("L'image n'a pas pu être chargée : " + imagePath);
-        }
     }
 
 
+    public void onReactionImgPressed(MouseEvent mouseEvent) {
 
 
-    private void likePost(int postId) {
-        ServicePosts servicePosts = new ServicePosts();
-
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                // Simulate delay
-                Thread.sleep(1000);
-
-                servicePosts.incrementLikes(postId);
-
-                // Fetch updated like count from database
-                int newLikeCount = servicePosts.getLikeCount(postId);
-
-                // Update UI on JavaFX Application Thread
-                Platform.runLater(() -> updateUI(newLikeCount));
-
-                return null;
-            }
-        };
-
-        new Thread(task).start();
-    }
-
-    private void unlikePost(int postId) {
-        ServicePosts servicePosts = new ServicePosts();
-
-        Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                // Simulate delay
-                Thread.sleep(1000);
-
-                servicePosts.DecrementLikes(postId);
-
-                // Fetch updated like count from database
-                int newLikeCount = servicePosts.getLikeCount(postId);
-
-                // Update UI on JavaFX Application Thread
-                Platform.runLater(() -> updateUI(newLikeCount));
-
-                return null;
-            }
-        };
-
-        new Thread(task).start();
-    }
-
-    private void updateUI(int likeCount) {
-        // Update UI on JavaFX Application Thread
-        nbReactions.setText(String.valueOf(likeCount));
     }
 
     public void onLikeContainerPressed(MouseEvent mouseEvent) {
+
+
         if (currentReaction == Reactions.NON) {
             setReaction(Reactions.LIKE);
-            likePost(Integer.parseInt(idPost.getText()));
         } else {
             setReaction(Reactions.NON);
-            unlikePost(Integer.parseInt(idPost.getText()));
         }
+
+        likePost(Integer.parseInt(idPost.getText()));
+
+    }
+    private void likePost(int postId) {
+
+        ServicePosts servicePosts=new ServicePosts();
+
+
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // Simulate delay
+                Thread.sleep(500);
+
+                servicePosts.UpdateLikes(postId);
+
+
+                // Fetch updated like count from database
+                int newLikeCount = servicePosts.getLikeCount(postId);
+                // Update UI on JavaFX Application Thread
+              //  nbReactions.setText(String.valueOf(newLikeCount));
+
+                updateUI(newLikeCount);
+
+
+
+                return null;
+            }
+        };
+
+
+        task.setOnFailed(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                Throwable exception = task.getException();
+                if (exception != null) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+
+        new Thread(task).start();
     }
 
-    public void setReaction(Reactions reaction) {
+
+    private void updateUI(int likeCount) {
+        // Update UI on JavaFX Application Thread
+      //  nbReactions.setText(String.valueOf(likeCount));
+        Platform.runLater(() -> nbReactions.setText(String.valueOf(likeCount)));
+
+
+
+    }
+
+
+
+
+    public void setReaction(Reactions reaction){
         currentReaction = reaction; // Update the currentReaction field
 
         Image image = new Image(getClass().getResourceAsStream(reaction.getImgSrc()));
@@ -256,7 +170,18 @@ public class ShowPost {
 
         reactionName.setText(reaction.getName());
         reactionName.setTextFill(Color.web(reaction.getColor()));
+
+
+
+       // nbReactions.setText(String.valueOf(post.getTotalReactions()));
     }
+
+    public void onLikeContainerMouseReleased(MouseEvent mouseEvent) {
+
+
+    }
+
+
 
     @FXML
     void OnCommentContainerClicked(MouseEvent event) {
@@ -276,7 +201,7 @@ public class ShowPost {
 
             Stage stage = new Stage();
             stage.setTitle("Add Comment");
-            stage.setScene(new Scene(root, 450, 450));
+            stage.setScene(new Scene(root, 555, 555));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -287,7 +212,7 @@ public class ShowPost {
     }
 
 
-    @FXML
+@FXML
     void editPost(MouseEvent event) {
         try {
 
@@ -312,9 +237,14 @@ public class ShowPost {
         }
     }
 
-    public void onReactionImgPressed(MouseEvent mouseEvent) {
-    }
 
-    public void onLikeContainerMouseReleased(MouseEvent mouseEvent) {
-    }
+
+
+
+
+
+
+
+
+
 }

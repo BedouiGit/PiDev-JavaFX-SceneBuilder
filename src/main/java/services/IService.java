@@ -3,7 +3,6 @@ package services;
 import entities.Comments;
 import entities.Posts;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,12 +24,6 @@ public interface IService<T> {
 
     int getLikeCount(int postId) throws SQLException;
 
-    void incrementLikes(int postId);
-
-    void DecrementLikes(int postId);
-
     // Function to get total likes from the database
     int getTotalLikesFromDatabase();
-
-    void saveImageToDatabase(File imageFile, Posts posts);
 }

@@ -18,11 +18,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class AddComment {
 
-    private Posts post = new Posts();
+
+    private Posts post=new Posts();
 
     @FXML
     private ListView<String> commentListView;
@@ -31,37 +30,51 @@ public class AddComment {
     private TextArea commentTextArea;
 
     public void setPost(Posts post) {
+
         this.post = post;
         // You can use the post in this controller as needed
+
     }
 
     public void initialize() {
-        try {
-            ServiceComments sc = new ServiceComments();
+        Platform.runLater(() -> {
+            try {
 
-            // Retrieve comments for the specific post
-            List<String> postComments = sc.getCommentsForPost(post);
+                ServiceComments sc = new ServiceComments();
+                // Retrieve comments associated with the selected post
+                List<String> comments = new ArrayList<>(sc.getCommentsForPost(post));
+                // Create an ObservableList from the comments list
 
-            // Retrieve all comments from the database
-            List<String> allComments = sc.getAllComments();
+                ObservableList<String> observableComments = FXCollections.observableArrayList(comments);
 
-            // Combine comments for the specific post and all comments
-            List<String> combinedComments = new ArrayList<>();
-            combinedComments.addAll(postComments);
-            combinedComments.addAll(allComments);
+                // Populate the ListView with the comments
+                commentListView.setItems(observableComments);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Handle exception
+            }
+        });
+    }
 
-            ObservableList<String> observableComments = FXCollections.observableArrayList(combinedComments);
-            commentListView.setItems(observableComments);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle exception
+
+
+
+    public void deleteSelectedComment(ActionEvent event) {
+
+        ServiceComments Sc=new ServiceComments();
+        String SP = commentListView.getSelectionModel().getSelectedItem();
+
+        if (SP != null) {
+          //  int id = SP.getId();
+            Sc.delete(SP);
+            commentListView.getItems().remove(SP);
         }
     }
 
 
 
     public void addComment(ActionEvent actionEvent) throws SQLException {
-        //  LocalDateTime dateCommentaire = LocalDateTime.now(); // Get the current date and time
+      //  LocalDateTime dateCommentaire = LocalDateTime.now(); // Get the current date and time
 
 
         String censoredText = BadWordFilter.getCensoredText(commentTextArea.getText());
@@ -79,20 +92,7 @@ public class AddComment {
 
     }
 
-    public void deleteSelectedComment(ActionEvent event) {
-
-        ServiceComments Sc=new ServiceComments();
-        String SP = commentListView.getSelectionModel().getSelectedItem();
-
-        if (SP != null) {
-            //  int id = SP.getId();
-            Sc.delete(SP);
-            commentListView.getItems().remove(SP);
-        }
-    }
 
     public void onItemSelected(ListView.EditEvent<String> stringEditEvent) {
     }
-
-
 }

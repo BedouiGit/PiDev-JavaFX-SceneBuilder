@@ -81,9 +81,9 @@
             </font>
         </Label>
         <ImageView fx:id="imgPost" fitHeight="535.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../Users/pc/Pictures/NFT/l.jpg" />
-         </image></ImageView>
+            <image>
+                <Image url="@../../../../../../../Users/pc/Pictures/NFT/v.jpg" />
+            </image></ImageView>
         <StackPane alignment="CENTER_LEFT">
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="10.0">

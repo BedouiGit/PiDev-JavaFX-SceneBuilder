@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="463.0" spacing="10.0" styleClass="post-background" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.editPost">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="565.0" spacing="10.0" styleClass="post-background" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.editPost">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="60.0" spacing="10.0">
             <children>
@@ -82,12 +82,16 @@
          <graphic>
             <HBox>
                <children>
-                  <TextField fx:id="contentTF" prefHeight="30.0" prefWidth="348.0" />
-                  <Button mnemonicParsing="false" onMouseClicked="#OnEditPostClicked" prefHeight="30.0" prefWidth="58.0" text="edit" />
+                  <TextField fx:id="contentTF" prefHeight="30.0" prefWidth="470.0" />
+                  <Button mnemonicParsing="false" onMouseClicked="#OnEditPostClicked" text="edit" />
                </children>
             </HBox>
          </graphic>
         </Label>
+        <ImageView fx:id="imgPost" fitHeight="535.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../Users/pc/Pictures/NFT/v.jpg" />
+            </image></ImageView>
         <StackPane alignment="CENTER_LEFT">
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="10.0">

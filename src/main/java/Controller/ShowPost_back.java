@@ -2,30 +2,25 @@ package Controller;
 
 import entities.Posts;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import services.ServicePosts;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 
 public class ShowPost_back {
 
     @FXML
     private Label content;
-    @FXML
-    private ImageView imgPost;
+
     @FXML
     private Label idPost;
     @FXML
@@ -44,8 +39,8 @@ Dashboard_Back db;
     private Posts getPost(){
         Posts post = new Posts();
         post.setId(1);
-        post.setTitle("NFTNavigator");
-        post.setContent("here");
+        post.setTitle("username");
+        post.setContent("aaaa");
         return post;
     }
 
@@ -68,15 +63,6 @@ Dashboard_Back db;
             content.setText(post.getContent());
         }else{
             content.setManaged(false);
-        }
-        String imagePath = "/img/" + post.getImage();
-        InputStream imageStream = getClass().getResourceAsStream(imagePath);
-        if (imageStream != null) {
-            Image image = new Image(imageStream);
-            imgPost.setImage(image);
-        } else {
-            // Image par défaut si l'image spécifiée n'est pas trouvée
-            System.out.println("L'image n'a pas pu être chargée : " + imagePath);
         }
     }
 
@@ -102,7 +88,7 @@ Dashboard_Back db;
         try {
 
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/back_office/AddComments.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/back_office/ShowComments_back.fxml"));
             Parent root = fxmlLoader.load();
 
             // Get the controller instance

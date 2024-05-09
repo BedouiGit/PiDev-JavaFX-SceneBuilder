@@ -66,25 +66,3 @@
 .add-comment-button:hover {
     -fx-background-color: #365899; /* Darker Facebook blue */
 }
-#AddPost {
-    -fx-background-color: #007bff; /* Blue background color */
-}
-
-/* Style for the "AddImage" button */
-#AddImage {
-    -fx-background-color: #ffc107; /* Yellow background color */
-}
-
-/* Style for the "Post Done" banner */
-#postDoneBanner {
-    -fx-background-color: #2A914D; /* Green background color */
-    -fx-text-fill: white; /* White text color */
-    -fx-font-size: 12px;
-    -fx-border-radius: 5px; /* Rounded corners */
-    -fx-padding: 5px 10px; /* Add padding */
-}
-
-/* Align the "AddImage" button to the center */
-#AddImage {
-    -fx-alignment: CENTER;
-}

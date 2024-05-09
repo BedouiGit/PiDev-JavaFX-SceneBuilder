@@ -25,7 +25,7 @@ public class ServiceComments {
 
         String query = "SELECT contenu FROM comment WHERE publication_id = ?";
         try (PreparedStatement statement = con.prepareStatement(query)) {
-            statement.setInt(1, post.getId());
+            statement.setInt(1,post.getId());
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -37,31 +37,19 @@ public class ServiceComments {
         return comments;
     }
 
-    // Method to retrieve all comments from the database
-    public List<String> getAllComments() throws SQLException {
-        List<String> allComments = new ArrayList<>();
-
-        String query = "SELECT contenu FROM comment";
-        try (PreparedStatement statement = con.prepareStatement(query)) {
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String content = resultSet.getString("contenu");
-                allComments.add(content);
-            }
-        }
-
-        return allComments;
-    }
-
-    public void delete(String contenu) {
+    public void delete(String contenu)
+    {
         String query = "DELETE FROM comment WHERE contenu = ?";
 
+
         try (PreparedStatement deleteCommentsStmt = con.prepareStatement(query)) {
-            deleteCommentsStmt.setString(1, contenu);
+            deleteCommentsStmt.setString(1,contenu);
             deleteCommentsStmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
     }
+
 }
