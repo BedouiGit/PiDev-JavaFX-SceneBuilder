@@ -1,6 +1,7 @@
 package services;
 
 
+import models.category;
 import utils.MyDB;
 import models.projets;
 import java.sql.Connection;
@@ -14,11 +15,36 @@ import java.sql.*;
 
 public class ProjetsServices {
     private Connection conn;
+
+    Connection cnx = utils.MaConnexion.getInstance().getCnx();
+
     private Statement ste;
     private PreparedStatement pst;
 
     public ProjetsServices() {
         conn = MyDB.getInstance().getConnection();
+    }
+
+
+    public List<projets> searchBy(String filterBy, String search ) throws SQLException {
+        List<projets> categories = new ArrayList<>();
+        String req = "SELECT * FROM `projets` WHERE `"+filterBy+"` LIKE '%"+search+"%'";
+        System.out.println(req);
+        Statement st = cnx.createStatement();
+        ResultSet res = st.executeQuery(req);
+        while (res.next()) {
+
+            projets category = new projets();
+            category.setId(res.getInt("id"));
+            category.setNom(res.getString("Nom"));
+            category.setDescription(res.getString("description"));
+            category.setPhotoUrl(res.getString("photo_url"));
+            category.setWallet_address(res.getString(("wallet_address")));
+
+            categories.add(category);
+        }
+
+        return categories;
     }
 
 

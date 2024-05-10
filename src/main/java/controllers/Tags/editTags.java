@@ -24,8 +24,7 @@ import java.time.LocalDate;
 
 public class editTags {
 
-    @FXML
-    private DatePicker TfDateEdit;
+
 
     @FXML
     private TextField TfDescriptionEdit;
@@ -53,6 +52,12 @@ public class editTags {
         currentPublication = pub;
         TfTitreEdit.setText(pub.getNom());
         TfDescriptionEdit.setText(pub.getDescription());
+        String titre = TfTitreEdit.getText();
+        String description = TfDescriptionEdit.getText();
+
+        // Update the publication object
+        currentPublication.setNom(titre);
+        currentPublication.setDescription(description);
 
 
         // Set image with a unique timestamp to prevent caching
@@ -87,15 +92,7 @@ public class editTags {
     @FXML
     void ModifierPublication(ActionEvent event) {
         try {
-            String titre = TfTitreEdit.getText();
-            String description = TfDescriptionEdit.getText();
-            int idUser = Integer.parseInt(TfIdUserEdit.getText());
-            LocalDate dateLocal = TfDateEdit.getValue();
-            java.sql.Date date = java.sql.Date.valueOf(dateLocal);
 
-            // Update the publication object
-            currentPublication.setNom(titre);
-            currentPublication.setDescription(description);
 
             // Update the image if a new one was selected
             if (imageFile != null) {

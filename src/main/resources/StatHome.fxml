@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="723.0" prefWidth="1323.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardAdmin">
+   <children>
+      <ScrollPane layoutX="37.0" layoutY="35.0" prefHeight="717.0" prefWidth="1286.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="1348.0">
+               <children>
+
+                  <PieChart fx:id="pieChart" layoutX="35.0" layoutY="14.0" prefHeight="316.0" prefWidth="603.0" title="Active  / Inactive Users" />
+                  <LineChart fx:id="lineChart" layoutX="230.0" layoutY="364.0" prefHeight="306.0" prefWidth="730.0" title="Users by Address">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </LineChart>
+                  <LineChart fx:id="lineChartCategory" layoutX="635.0" layoutY="29.0" prefHeight="316.0" prefWidth="565.0" title="Number of projects per Category">
+                     <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis side="LEFT" />
+                     </yAxis>
+                  </LineChart>
+
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+
+
+</AnchorPane>

@@ -1,15 +1,20 @@
 package services;
 
+import models.NFT;
 import models.category;
 import utils.MyDB;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CategoryService implements ISERVICEScat<category> {
     private Connection conn;
     private PreparedStatement pst;
+
+    Connection cnx = utils.MaConnexion.getInstance().getCnx();
 
     public CategoryService() {
         conn = MyDB.getInstance().getConnection();
@@ -138,5 +143,43 @@ public class CategoryService implements ISERVICEScat<category> {
             }
         }
         return category;
+    }
+
+
+    public List<category> searchBy(String filterBy, String search) throws SQLException {
+        List<category> categories = new ArrayList<>();
+        String req = "SELECT * FROM `category` WHERE `"+filterBy+"` LIKE '%"+search+"%'";
+        System.out.println(req);
+        Statement st = cnx.createStatement();
+        ResultSet res = st.executeQuery(req);
+        while (res.next()) {
+
+            category category = new category();
+            category.setId(res.getInt("id"));
+            category.setNom(res.getString("Nom"));
+            category.setDescription(res.getString("description"));
+            category.setPhotoUrl(res.getString("photo_url"));
+
+            categories.add(category);
+        }
+
+        return categories;
+    }
+
+    public Map<String, Integer> getProjectsPerCategory() throws SQLException {
+        Map<String, Integer> projectsPerCategory = new HashMap<>();
+        String query = "SELECT c.nom AS category_name, COUNT(p.id) AS project_count " +
+                "FROM category c " +
+                "LEFT JOIN projets p ON c.id = p.category_id " +
+                "GROUP BY c.nom";
+        try (PreparedStatement pst = conn.prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                String categoryName = rs.getString("category_name");
+                int projectCount = rs.getInt("project_count");
+                projectsPerCategory.put(categoryName, projectCount);
+            }
+        }
+        return projectsPerCategory;
     }
 }

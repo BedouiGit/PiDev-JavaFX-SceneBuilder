@@ -1,14 +1,14 @@
 package services;
 
 import models.projet_reactions;
-import utils.MyDB;
+import utils.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class projectReactionService {
 
-    Connection cnx = MyDB.getInstance().getConnection();
+    Connection cnx = DBConnection.getInstance().getConnection();
     userService userService = new userService();
 
     public projectReactionService() {

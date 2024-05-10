@@ -1,7 +1,7 @@
 package services;
 
 import models.Tags;
-import utils.MyDB;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class ServiceTagsArticle implements IServiceArticle<Tags> {
     private Connection con;
 
     public ServiceTagsArticle() {
-        con = MyDB.getInstance().getConnection();
+        con = DBConnection.getInstance().getConnection();
     }
 
     @Override
@@ -27,19 +27,20 @@ public class ServiceTagsArticle implements IServiceArticle<Tags> {
 
     @Override
     public void modifier(Tags tag) throws SQLException {
-        String req = "UPDATE publication SET id=?, nom=?, description=?, phototag=? WHERE id=?";
+        String req = "UPDATE tags SET id=?, nom=?, description=?, phototag=? WHERE id=?";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setInt(1, tag.getId());
         pre.setString(2, tag.getNom());
         pre.setString(3, tag.getDescription());
         pre.setString(4, tag.getImageT());
+        pre.setInt(5, tag.getId()); // Bind the ID again for the WHERE clause
 
         pre.executeUpdate();
     }
 
     @Override
     public void supprimer(Tags tag) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("DELETE FROM WHERE id=?");
+        PreparedStatement pre = con.prepareStatement("DELETE FROM tags WHERE id=?");
         pre.setInt(1, tag.getId());
         pre.executeUpdate();
     }

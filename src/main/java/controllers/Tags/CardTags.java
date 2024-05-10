@@ -1,6 +1,9 @@
 package controllers.Tags;
 
 
+import controllers.Publication.DetailPublication;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import models.Tags;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,11 +72,16 @@ public class CardTags {
     @FXML
     private void handleEditAction(ActionEvent event) {
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back/Tags/editPub.fxml"));
-            Parent root = loader.load();
+            Parent detailView = loader.load();
             editTags controller = loader.getController();
             controller.setTags(this.currentPublication);
-            MainFX.setCenterView(root);
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(detailView));
+            newStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,18 +114,16 @@ public class CardTags {
     private void handleCardClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
             try {
-                FXMLLoader loader;
 
-                    // Load the front end detail view otherwise
-                    loader = new FXMLLoader(getClass().getResource("/Front/Tags/DetailPublication.fxml"));
-
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front/Tags/DetailPublication.fxml"));
                 Parent detailView = loader.load();
-
                 DetailTags controller = loader.getController();
                 controller.setPublication(this.currentPublication);
 
-                // Assuming you have a static method in MainFX to change the center view
-                MainFX.setCenterView(detailView);
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(detailView));
+                newStage.show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -2,6 +2,7 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,57 +25,56 @@ public class Stats implements Initializable {
     @FXML
     private ImageView AIResult;
 
-    private Image image1 = new Image("file:/C:/Users/Admin/Desktop/Java_badbud/nfttun/img/131096-down-arrow-png-free-photo.png");
-    private Image image2 = new Image("file:/C:/Users/Admin/Desktop/Java_badbud/nfttun/img/131096-down-arrow-png-free-photo.png");
-  private CommandeServicePub sp = new CommandeServicePub();
+    private Image image1 = new Image("file:/C:/Users/Khalil/Desktop/integration java/PiDev-JavaFX-SceneBuilder/img/131096-down-arrow-png-free-photo.png");
+    private Image image2 = new Image("file:/C:/Users/Khalil/Desktop/integration java/PiDev-JavaFX-SceneBuilder/img/131096-down-arrow-png-free-photo.png");
+    private CommandeServicePub sp = new CommandeServicePub();
 
 
-        private void fetchPredictionAndUpdateImage() {
-            List<Commande> commandes = sp.getRecentCommandes(2);
-            System.out.print("test");
+    private void fetchPredictionAndUpdateImage() {
+        List<Commande> commandes = sp.getRecentCommandes(20);
+        System.out.print("test");
 
-            List<Map<String, Object>> simplifiedCommandes = commandes.stream().map(commande -> {
-                Map<String, Object> map = new HashMap<>();
-                map.put("date", commande.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                map.put("total", commande.getTotal());
-                return map;
-            }).collect(Collectors.toList());
-            System.out.print("test");
+        List<Map<String, Object>> simplifiedCommandes = commandes.stream().map(commande -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("date", commande.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            map.put("total", commande.getTotal());
+            return map;
+        }).collect(Collectors.toList());
+        System.out.print("test");
 
-            String jsonData = new Gson().toJson(simplifiedCommandes);
+        String jsonData = new Gson().toJson(simplifiedCommandes);
 
-            System.out.print(jsonData);
+        System.out.print(jsonData);
 
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://192.168.1.20:5000/predict"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(jsonData))
-                    .build();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://127.0.0.1:5000/predict"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonData))
+                .build();
 
-            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                    .thenAccept(response -> {
-                        JsonObject jsonResponse = new Gson().fromJson(response.body(), JsonObject.class);
-                        System.out.println("Response Body: " + response.body());
-                        JsonArray predictions = jsonResponse.getAsJsonArray("predictions");
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> {
+                    JsonObject jsonResponse = new Gson().fromJson(response.body(), JsonObject.class);
+                    JsonArray predictions = jsonResponse.getAsJsonArray("predictions");
 
-                        if (predictions != null && predictions.size() > 0) {
-                            double prediction = predictions.get(0).getAsDouble();
-                            System.out.println("Prediction: " + prediction);
-                            if (prediction > 0.5) {
-                                AIResult.setImage(image2);
-                            } else {
-                                AIResult.setImage(image1);
-                            }
+                    if (predictions != null && predictions.size() > 0) {
+                        double prediction = predictions.get(0).getAsDouble();
+                        System.out.println("Prediction: " + prediction);
+                        if (prediction > 0.5) {
+                            AIResult.setImage(image2);
                         } else {
-                            System.out.println("No prediction data available or the prediction format is incorrect.");
+                            AIResult.setImage(image1);
                         }
-                    })
-                    .exceptionally(e -> {
-                        e.printStackTrace();
-                        return null;
-                    });
-        }
+                    } else {
+                        System.out.println("No prediction data available or the prediction format is incorrect.");
+                    }
+                })
+                .exceptionally(e -> {
+                    e.printStackTrace();
+                    return null;
+                });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

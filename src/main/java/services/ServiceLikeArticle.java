@@ -1,7 +1,7 @@
 package services;
 
 import models.Like;
-import utils.MyDB;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class ServiceLikeArticle implements IServiceArticle<Like> {
     private Connection con;
 
     public ServiceLikeArticle() {
-        con = MyDB.getInstance().getConnection();
+        con = DBConnection.getInstance().getConnection();
     }
 
     @Override

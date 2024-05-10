@@ -2,28 +2,23 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1344.0" stylesheets="@../css/styleDashbord.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
+<BorderPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="1237.0" stylesheets="@../css/styleDashbord.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Dashboard">
    <left>
-      <VBox prefHeight="720.0" prefWidth="250.0" styleClass="white-background" BorderPane.alignment="CENTER">
+      <VBox prefHeight="582.0" prefWidth="215.0" style="-fx-background-color: #471e40;" styleClass="white-background" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="580.0" prefWidth="250.0">
+            <VBox prefHeight="583.0" prefWidth="250.0">
                <children>
-                  <Label prefHeight="52.0" prefWidth="131.0" text="Dashboard" textFill="#3b118f">
+                  <Label prefHeight="46.0" prefWidth="253.0" textFill="#e7e3e3">
                      <font>
                         <Font name="Gabriola" size="21.0" />
                      </font>
@@ -33,10 +28,15 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="36.0" prefWidth="250.0">
                      <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0">
+                           <image>
+                              <Image url="@../images/home%20icon.png" />
+                           </image>
+                        </ImageView>
                         <ImageView fitHeight="39.0" fitWidth="30.0" onMousePressed="#showHome" pickOnBounds="true" preserveRatio="true">
 
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showHome" text="Home" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showHome" text="Home" textFill="#f1f1f2">
                            <font>
                               <Font name="Cambria" size="25.0" />
                            </font>
@@ -58,7 +58,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button fx:id="profile" mnemonicParsing="false" prefHeight="33.0" prefWidth="84.0" text="Profile" textFill="#3b118f">
+                        <Button fx:id="profile" mnemonicParsing="false" prefHeight="33.0" prefWidth="84.0" text="Profile" textFill="#f2f2f2" onAction="#profileAdmin" >
                            <font>
                               <Font name="Candara" size="17.0" />
                            </font>
@@ -83,7 +83,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showDisplayPublications" prefHeight="38.0" prefWidth="132.0" text="Publications" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showDisplayPublications" prefHeight="38.0" prefWidth="132.0" text="Publications" textFill="WHITE">
                            <font>
                               <Font name="Candara" size="20.0" />
                            </font>
@@ -110,7 +110,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showDisplayTags" text="Tags" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showDisplayTags" text="Tags" textFill="#f6f2ff">
                            <font>
                               <Font name="Candara" size="20.0" />
                            </font>
@@ -137,7 +137,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showAddPublication" text="Add Publication" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showAddPublication" text="Add Publication" textFill="WHITE">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -158,7 +158,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showAddTag" text="Add Tag" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showAddTag" text="Add Tag" textFill="WHITE">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -179,7 +179,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showAddNFT" text="NFT" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showAddNFT" text="NFT" textFill="#f6f5fa">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -200,7 +200,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#showAddCommande" text="Commande" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#showAddCommande" text="Commande" textFill="#f7f6fa">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -221,7 +221,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#Prediction" text="Sales Prediction" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#Prediction" text="Sales Prediction" textFill="#f0f0f2">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -242,7 +242,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#NavigateToCategory" text="Category" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#NavigateToCategory" text="Category" textFill="#faf9fc">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -263,7 +263,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Button mnemonicParsing="false" onAction="#Prediction" text="Projects" textFill="#3b118f">
+                        <Button mnemonicParsing="false" onAction="#news" text="news" textFill="#faf9fc">
                            <font>
                               <Font name="Candara" size="19.0" />
                            </font>
@@ -274,25 +274,10 @@
                         </Button>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" />
                </children>
             </VBox>
          </children>
       </VBox>
    </left>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-      <children>
-
-         <PieChart fx:id="pieChart" layoutX="35.0" layoutY="14.0" prefHeight="313.0" prefWidth="419.0" title="Active  / Inactive Users" />
-         <LineChart fx:id="lineChart" layoutY="379.0" prefHeight="306.0" prefWidth="507.0" title="Users by Address">
-            <xAxis>
-               <CategoryAxis side="BOTTOM" />
-            </xAxis>
-            <yAxis>
-               <NumberAxis side="LEFT" />
-            </yAxis>
-         </LineChart>
-      </children>
-      </AnchorPane>
-   </center>
 </BorderPane>

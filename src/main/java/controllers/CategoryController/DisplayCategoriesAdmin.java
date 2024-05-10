@@ -1,211 +1,724 @@
 package controllers.CategoryController;
 
+import controllers.BackFormNFT;
+import controllers.ProjetsController.DisplayProjectsController;
+import controllers.ProjetsController.ModifierProjectController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.util.StringConverter;
+import models.projets;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import models.Role;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.util.Pair;
+import models.NFT;
 import models.category;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import services.CategoryService;
-import utils.NavigationUtil;
+import services.ProjetsServices;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class DisplayCategoriesAdmin {
 
-    private final CategoryService cs = new CategoryService();
+    @FXML
+    private TableView<category> tableView;
+
     @FXML
     private TableColumn<category, String> name;
 
-    private category selectedCategory;
-    @FXML
-    private TableColumn<category, Integer> id;
     @FXML
     private TableColumn<category, String> description;
+
     @FXML
     private TableColumn<category, String> photo_url;
-    private ObservableList<category> categoryList;
+
+    @FXML
+    private Button btn_workbench111112;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Button Afficher_les_projets;
+
+    @FXML
+    private BarChart<String, Number> barChart;
+
+
+    @FXML
+    private Button removeButton;
+
+    @FXML
+    private Button printButton;
+
     @FXML
     private TextField searchField;
 
     @FXML
-    private Button refreshButton;
+    private ComboBox<String> filterComboBox;
+
     @FXML
-    private Button suppbutton;
+    private Button btn_workbench13;
+
+    private category selectedCategory;
+
+
     @FXML
-    private Button modifierbutton;
-    @FXML
-    private TableView<category> tableView;
-
-    public void initData(Role rolee)
-    {
-        CategoryService cs = new CategoryService();
-        List<category> all = cs.afficher();
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        name.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        photo_url.setCellValueFactory(new PropertyValueFactory<>("photo_url"));
+    private LineChart<String, Number> lineChartCategory;
 
 
-        ObservableList<category> categoryList = FXCollections.observableArrayList(all);
-        // Set data to table view
-        tableView.setItems(categoryList);
-        populateTableView();
 
-    }
-
-    private void populateTableView() {
+    private void populateChartData() {
         CategoryService categoryService = new CategoryService();
-        categoryList = FXCollections.observableArrayList(categoryService.afficher());
-        tableView.setItems(categoryList);
-        // Associer les propriétés des utilisateurs aux colonnes de TableView
-    }
-    @FXML
-    void refreshButtonAction(ActionEvent event) {
-        refreshTableView();
+        List<category> categories = categoryService.afficher();
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        for (category cat : categories) {
+            // Count the number of projects for each category
+            int projectCount = cat.getProjets().size();
+            series.getData().add(new XYChart.Data<>(cat.getNom(), projectCount));
+        }
+
+
     }
 
     @FXML
-    public void initialize() {
-        refreshButton.setOnAction(this::refreshButtonAction);
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            searchUsers(newValue);
-        });
-        // Initialisation du TableView avec les données de la base de données
-        tableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Vérifiez si c'est un double clic
-                selectedCategory = tableView.getSelectionModel().getSelectedItem();
-                if (selectedCategory != null) {
-                    openModificationForm();
+    void generatePdf(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        File file = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            List<category> categories = tableView.getItems();
+            genererPDF(categories, file.getAbsolutePath());
+            showAlert("Success", "PDF saved successfully.", Alert.AlertType.INFORMATION);
+        }
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void nftbackbtn(ActionEvent event) {
+        loadFXML("/BackOffice/BackCommande.fxml", event);
+    }
+
+    @FXML
+    void commandebackbtn(ActionEvent event) {
+        loadFXML("/BackOffice/BackCommande.fxml", event);
+    }
+
+    private void loadFXML(String fxmlPath, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent parent = loader.load();
+
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(parent);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void print(ActionEvent event) {
+        // Implement printing functionality here if needed
+    }
+
+    @FXML
+    void addCategory(ActionEvent event) {
+        loadFXML("/fxml/Admin/AddCategoryAdmin.fxml", event);
+    }
+
+    @FXML
+    void removeCategory(ActionEvent event) throws SQLException {
+        if (selectedCategory != null) {
+            CategoryService sp = new CategoryService();
+            sp.supprimer(selectedCategory);
+            displayAllCategoriesInTableView();
+        }
+    }
+
+
+
+    @FXML
+    void DisplayProjects() {
+        if (selectedCategory != null) {
+            // Create the custom display projects dialog
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Projects for Category: " + selectedCategory.getNom());
+            dialog.setHeaderText("List of Projects:");
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CLOSE);
+// Create a TableView to hold project information and actions
+            TableView<projets> tableView = new TableView<>();
+
+            // Define TableColumn instances for project name, description, and actions
+            TableColumn<projets, String> nameColumn = new TableColumn<>("Nom");
+            nameColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+            TableColumn<projets, String> descriptionColumn = new TableColumn<>("Description");
+            descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+            TableColumn<projets, String> wallet_addressColumn = new TableColumn<>("Wallet_address");
+            wallet_addressColumn.setCellValueFactory(new PropertyValueFactory<>("wallet_address"));
+
+            TableColumn<projets, String> photo_urlColumn = new TableColumn<>("Photo_url");
+            photo_urlColumn.setCellValueFactory(new PropertyValueFactory<>("photoUrl"));
+
+
+            TableColumn<projets, Void> actionColumn = new TableColumn<>("Actions");
+            actionColumn.setCellFactory(param -> new TableCell<>() {
+                final Button viewButton = new Button("View");
+                final Button editButton = new Button("Edit");
+                final Button deleteButton = new Button("Delete");
+
+                {
+                    viewButton.setOnAction(event -> {
+                        // Handle view action
+                        projets project = tableView.getItems().get(getIndex());
+
+                        // Create a custom dialog to display project details
+                        Dialog<Void> projectDialog = new Dialog<>();
+                        projectDialog.setTitle("Project Details");
+                        projectDialog.setHeaderText("Details for Project: " + project.getNom());
+
+                        // Set the button types (Close)
+                        projectDialog.getDialogPane().getButtonTypes().addAll(ButtonType.CLOSE);
+
+                        // Create a VBox to hold project information
+                        VBox vbox = new VBox(10);
+                        vbox.setPadding(new Insets(10));
+
+                        // Display project details
+                        Label nameLabel = new Label("Name: " + project.getNom());
+                        Label descriptionLabel = new Label("Description: " + project.getDescription());
+                        Label walletAddressLabel = new Label("Wallet Address: " + project.getWallet_address());
+                        Label photoLabel = new Label("Photo URL: " + project.getPhotoUrl());
+
+                        vbox.getChildren().addAll(nameLabel, descriptionLabel, walletAddressLabel, photoLabel);
+
+                        projectDialog.getDialogPane().setContent(vbox);
+
+                        // Show the dialog
+                        projectDialog.showAndWait();
+                    });
+
+                    editButton.setOnAction(event -> {
+                        // Handle edit action
+                        projets project = tableView.getItems().get(getIndex());
+
+                        // Create a custom dialog to edit project details
+                        Dialog<Void> editDialog = new Dialog<>();
+                        editDialog.setTitle("Edit Project");
+                        editDialog.setHeaderText("Edit Details for Project: " + project.getNom());
+
+                        // Set the button types (OK and Cancel)
+                        editDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+                        // Create a GridPane to hold text fields for editing
+                        GridPane gridPane = new GridPane();
+                        gridPane.setHgap(10);
+                        gridPane.setVgap(10);
+                        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+                        TextField nameField = new TextField(project.getNom());
+                        TextField descriptionField = new TextField(project.getDescription());
+                        TextField walletAddressField = new TextField(project.getWallet_address());
+
+                        gridPane.add(new Label("Name:"), 0, 0);
+                        gridPane.add(nameField, 1, 0);
+                        gridPane.add(new Label("Description:"), 0, 1);
+                        gridPane.add(descriptionField, 1, 1);
+                        gridPane.add(new Label("Wallet Address:"), 0, 2);
+                        gridPane.add(walletAddressField, 1, 2);
+
+                        editDialog.getDialogPane().setContent(gridPane);
+
+                        // Convert the result to a simple array when the OK button is clicked
+                        editDialog.setResultConverter(dialogButton -> {
+                            if (dialogButton == ButtonType.OK) {
+                                String newName = nameField.getText();
+                                String newDescription = descriptionField.getText();
+                                String newWalletAddress = walletAddressField.getText();
+                                // Perform action to update project in database or wherever it's stored
+                                // For example, you can call a method in ProjetsServices to update the project
+                                ProjetsServices projectService = new ProjetsServices();
+                                project.setNom(newName);
+                                project.setDescription(newDescription);
+                                project.setWallet_address(newWalletAddress);
+                                projectService.modifierProjet(project);
+                            }
+                            return null; // Return null in all cases
+                        });
+
+                        // Show the dialog
+                        editDialog.showAndWait();
+                    });
+
+
+                    deleteButton.setOnAction(event -> {
+                        // Handle delete action
+                        projets project = tableView.getItems().get(getIndex());
+
+                        // Create a confirmation dialog
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Confirm Deletion");
+                        alert.setHeaderText("Delete Project");
+                        alert.setContentText("Are you sure you want to delete the project: " + project.getNom() + "?");
+
+                        // Get the result of the confirmation dialog
+                        Optional<ButtonType> result = alert.showAndWait();
+
+                        // Check if the user confirmed the deletion
+                        if (result.isPresent() && result.get() == ButtonType.OK) {
+                            // Perform action to delete project from the database
+                            ProjetsServices projectService = new ProjetsServices();
+                            projectService.supprimerProjet(project.getId());
+
+                            // Remove the project from the TableView
+                            tableView.getItems().remove(project);
+                        }
+                    });
+                }
+
+                @Override
+                protected void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        HBox buttons = new HBox(5);
+                        buttons.getChildren().addAll(viewButton, editButton, deleteButton);
+                        setGraphic(buttons);
+                    }
+                }
+            });
+
+            // Add columns to TableView
+            tableView.getColumns().addAll(nameColumn, descriptionColumn, wallet_addressColumn, photo_urlColumn, actionColumn);
+
+            // Assuming you have a method in your service to fetch projects by category id
+            ProjetsServices projectService = new ProjetsServices();
+            List<projets> projects = projectService.getProjectsByCategory(selectedCategory.getId());
+            tableView.getItems().addAll(projects);
+
+            dialog.getDialogPane().setContent(tableView);
+
+            // Show the dialog
+            dialog.showAndWait();
+        } else {
+            showAlert("Error", "Please select a category to display projects.", Alert.AlertType.ERROR);
+        }
+    }
+    @FXML
+
+    void addProject(ActionEvent event) {
+        // Create a custom dialog to add a new project
+        Dialog<Void> addDialog = new Dialog<>();
+        addDialog.setTitle("Add Project");
+        addDialog.setHeaderText("Add a New Project");
+
+        // Set the button types (OK and Cancel)
+        addDialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // Create a GridPane to hold text fields for adding a new project
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField nameField = new TextField();
+        TextField descriptionField = new TextField();
+        TextField walletAddressField = new TextField();
+        TextField photoUrlField = new TextField();
+        ComboBox<category> categoryComboBox = new ComboBox<>(); // Use ComboBox for category selection
+
+        CategoryService categoryService = new CategoryService();
+        List<category> categories = categoryService.afficher(); // Assuming you have a method to fetch categories
+
+        // Create a StringConverter to display only category names
+        StringConverter<category> categoryStringConverter = new StringConverter<category>() {
+            @Override
+            public String toString(category category) {
+                if (category != null) {
+                    return category.getNom(); // Display only the category name if category is not null
+                } else {
+                    return ""; // Or any default value you prefer when category is null
+                }
+            }
+
+            @Override
+            public category fromString(String string) {
+                // Not needed for ComboBox display, but you can implement if necessary
+                return null;
+            }
+        };
+
+        categoryComboBox.setConverter(categoryStringConverter);
+        categoryComboBox.setItems(FXCollections.observableArrayList(categories));
+
+        gridPane.add(new Label("Name:"), 0, 0);
+        gridPane.add(nameField, 1, 0);
+        gridPane.add(new Label("Description:"), 0, 1);
+        gridPane.add(descriptionField, 1, 1);
+        gridPane.add(new Label("Wallet Address:"), 0, 2);
+        gridPane.add(walletAddressField, 1, 2);
+        gridPane.add(new Label("Photo URL:"), 0, 3);
+        gridPane.add(photoUrlField, 1, 3);
+        gridPane.add(new Label("Category:"), 0, 4); // Change label to "Category"
+        gridPane.add(categoryComboBox, 1, 4); // Add ComboBox for category selection
+
+        // Button for uploading an image
+        Button uploadButton = new Button("Upload Image");
+        uploadButton.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose Image File");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+            );
+            File selectedFile = fileChooser.showOpenDialog(addDialog.getOwner());
+
+            if (selectedFile != null) {
+                // Copy the selected image file to the project directory
+                File destDir = new File("uploadedimage/img/");
+                if (!destDir.exists()) {
+                    destDir.mkdirs(); // Create directory if it doesn't exist
+                }
+                File destFile = new File(destDir, selectedFile.getName());
+                try {
+                    Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    // Set the photo URL field to the path of the copied image file
+                    photoUrlField.setText(destFile.getAbsolutePath());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    // Handle the exception (e.g., show an error message)
                 }
             }
         });
-        // Ajout d'un gestionnaire d'événements au bouton "Supprimer"
-        suppbutton.setOnAction(event -> {
-            try {
-                deleteCategory();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+
+        gridPane.add(uploadButton, 2, 3); // Add the upload button to the grid pane
+
+        addDialog.getDialogPane().setContent(gridPane);
+
+        // Convert the result to a simple array when the OK button is clicked
+        addDialog.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                String name = nameField.getText();
+                String description = descriptionField.getText();
+                String walletAddress = walletAddressField.getText();
+                String photoUrl = photoUrlField.getText();
+                category selectedCategory = categoryComboBox.getValue(); // Get the selected category from the ComboBox
+
+                // Get the current date and time
+                Date currentDate = new Date(System.currentTimeMillis());
+
+                projets newProject = new projets(0, name, description, walletAddress, currentDate, photoUrl, selectedCategory.getId());
+                ProjetsServices projectService = new ProjetsServices();
+                projectService.insererProjet(newProject);
             }
+            return null; // Return null in all cases
         });
-        modifierbutton.setOnAction(event -> {
-            if (selectedCategory != null) {
-                openModificationForm();
+
+        // Show the dialog
+        addDialog.showAndWait();
+    }
+
+
+    @FXML
+    void initialize() {
+        filterComboBox.getItems().addAll("nom", "description");
+        filterComboBox.getSelectionModel().selectFirst();
+
+        // Add event listener to the filter combo box
+        filterComboBox.setOnAction(event -> searchCategory(event));
+
+        // Add listener to the text property of the search field for dynamic search
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchCategory(new ActionEvent());
+        });
+
+        displayAllCategoriesInTableView();
+        setTableActionButtons(true);
+
+        populateChartData();
+    }
+
+
+    @FXML
+    void searchCategory(ActionEvent event) {
+        String filterBy = filterComboBox.getValue();
+        String search = searchField.getText();
+
+        try {
+            CategoryService serviceCategories = new CategoryService();
+            List<category> categories;
+            if (search.isEmpty()) {
+                categories = serviceCategories.afficher();
             } else {
-                // Si aucun utilisateur n'est sélectionné, affichez un message d'avertissement
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("No category selected\n");
-                alert.setHeaderText(null);
-                alert.setContentText("Please select a category to edit.\n");
-                alert.showAndWait();
+                categories = serviceCategories.searchBy(filterBy, search);
+            }
+
+            // Sort categories alphabetically by name or description based on the filter
+            if ("nom".equals(filterBy)) {
+                categories.sort(Comparator.comparing(category::getNom));
+            } else if ("description".equals(filterBy)) {
+                categories.sort(Comparator.comparing(category::getDescription));
+            }
+
+            ObservableList<category> produitObservableList = FXCollections.observableArrayList(categories);
+
+            // Clear existing items from the table view
+            tableView.getItems().clear();
+
+            // Set updated items to the table view
+            tableView.setItems(produitObservableList);
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des personnes : " + e.getMessage());
+        }
+    }
+
+
+
+    public void displayAllCategoriesInTableView() {
+        tableView.setOnMouseClicked(this::handleTableViewClick);
+
+        name.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        photo_url.setCellValueFactory(new PropertyValueFactory<>("photoUrl"));
+        photo_url.setCellFactory(col -> new TableCell<category, String>() {
+            private final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(String imagePath, boolean empty) {
+                super.updateItem(imagePath, empty);
+                if (empty || imagePath == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    try {
+                        Image image = new Image(new FileInputStream(imagePath), 50, 50, true, true);
+                        if (image.isError()) {
+                            setText("Image load failed");
+                        } else {
+                            imageView.setImage(image);
+                            setGraphic(imageView);
+                            setText(null);
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println("Error loading image: " + e.getMessage());
+                        setText("Image not found");
+                    }
+                }
             }
         });
-    }
-    private void openModificationForm() {
-        try {
-            // Charger le formulaire de modification depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/editUser.fxml"));
-            Parent modificationInterface = loader.load();
 
-            // Passer l'utilisateur sélectionné au contrôleur du formulaire de modification
-            ModifierCategoryController modificationController = loader.getController();
-            modificationController.initData(selectedCategory);
-
-            // Créer une nouvelle fenêtre pour la modification et afficher le formulaire pré-rempli
-            Stage modificationStage = new Stage();
-            modificationStage.setScene(new Scene(modificationInterface));
-            modificationStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void loadCategory() {
-        // Utiliser le service UserService pour récupérer la liste des utilisateurs depuis la base de données
+        // Assuming CategoryService is correctly implemented
         CategoryService categoryService = new CategoryService();
-        ObservableList<category> cat = FXCollections.observableArrayList(categoryService.afficher());
+        List<category> categories = categoryService.afficher();
 
-        // Mettre à jour la liste des utilisateurs de la TableView
-        categoryList.clear(); // Nettoyer la liste existante
-        categoryList.addAll(cat); // Ajouter les nouveaux utilisateurs
-    }
-
-    // Méthode pour rafraîchir la TableView
-    public void refreshTableView() {
-        loadCategory();
-        // Actualiser la TableView pour refléter les changements
-        tableView.refresh();
-    }
-    private void deleteCategory() throws SQLException {
-        // Récupérer l'élément sélectionné dans le TableView
-        category selectedCategory = tableView.getSelectionModel().getSelectedItem();
-
-        // Vérifier si un élément est sélectionné
-        if (selectedCategory != null) {
-            // Afficher une boîte de dialogue de confirmation
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Deletion confirmation\n");
-            alert.setHeaderText("Confirm deletion\n");
-            alert.setContentText("Are you sure you want to delete this category\n ?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-
-                CategoryService categoryService = new CategoryService();
-                categoryService.supprimer(selectedCategory);
-                // Supprimer l'utilisateur de la liste des données
-                categoryList.remove(selectedCategory);
-
-                // Supprimer l'utilisateur de la base de données en appelant votre méthode deleteCodePromo(selectedCategory.getId())
-
-                // Rafraîchir le TableView
-                tableView.refresh();
-            }
+        if (categories.isEmpty()) {
+            System.out.println("No categories found.");
         } else {
-            // Si aucun élément n'est sélectionné, affichez un message d'avertissement
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No items selected\n");
-            alert.setHeaderText(null);
-            alert.setContentText("Please select a user to delete\n.");
-            alert.showAndWait();
+            ObservableList<category> categoryObservableList = FXCollections.observableArrayList(categories);
+            tableView.setItems(categoryObservableList);
         }
     }
 
-    @FXML
-    void navigateToAddCategory(ActionEvent event ){
+
+    private void handleTableViewClick(MouseEvent mouseEvent) {
+        category selectedCategory = tableView.getSelectionModel().getSelectedItem();
+        if (selectedCategory != null) {
+            this.selectedCategory = selectedCategory;
+            setTableActionButtons(false);
+        }
+    }
+
+    private void setTableActionButtons(boolean state) {
+        removeButton.setDisable(state);
+        Afficher_les_projets.setDisable(state);
+    }
+
+
+    public static void genererPDF(List<category> categories, String cheminFichier) {
         try {
-            NavigationUtil.navigateTo("/fxml/Admin/AddCategoryAdmin.fxml", ((Node) event.getSource()).getScene().getRoot());
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage(PDRectangle.A4);
+            document.addPage(page);
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, page.getMediaBox().getHeight() - 50);
+            contentStream.showText("Liste des catégories:");
+            contentStream.endText();
+
+            float currentY = page.getMediaBox().getHeight() - 70;
+
+            for (category cat : categories) {
+                contentStream.beginText(); // Begin new text block for each category
+                contentStream.newLineAtOffset(50, currentY);
+                contentStream.showText("Nom: " + cat.getNom());
+                contentStream.newLineAtOffset(0, -15);
+                contentStream.showText("Description: " + cat.getDescription());
+                contentStream.endText(); // End current text block
+
+                // Load the image from the file path
+                BufferedImage bufferedImage = ImageIO.read(new File(cat.getPhotoUrl()));
+                PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
+
+                // Draw the image onto the PDF
+                contentStream.drawImage(pdImage, 100, currentY - 45, pdImage.getWidth(), pdImage.getHeight());
+
+                currentY -= 90; // Adjust for text and image height
+                if (currentY < 70) {
+                    contentStream.close();
+                    document.addPage(new PDPage(PDRectangle.A4));
+                    page = document.getPage(document.getNumberOfPages() - 1);
+                    contentStream = new PDPageContentStream(document, page);
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+                    contentStream.beginText(); // Begin new text block for the next page
+                    contentStream.newLineAtOffset(50, page.getMediaBox().getHeight() - 50);
+                }
+            }
+
+            contentStream.endText(); // End last text block
+            contentStream.close();
+
+            document.save(cheminFichier);
+            document.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-    @FXML
-    void searchUsers(String query) {
-        query = query.trim().toLowerCase();
-        if (query.isEmpty()) {
-            loadCategory(); // Reload all users if the search query is empty
-        } else {
-            // Filter users based on the search query
-            String finalQuery = query;
-            ObservableList<category> filteredcat = categoryList.filtered(u ->
-                    u.getNom().toLowerCase().contains(finalQuery) ||
-                            u.getDescription().toLowerCase().contains(finalQuery) ||
-                            u.getPhotoUrl().toLowerCase().contains(finalQuery));
-            tableView.setItems(filteredcat);
+    private Image loadImage(String path) {
+        try {
+            return new Image(new FileInputStream(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            // Return null or a default image in case of error
+            return null;
         }
     }
+
+    @FXML
+    void updateCategory(ActionEvent event) {
+        if (selectedCategory != null) {
+            // Create the custom update dialog
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
+            dialog.setTitle("Update Category");
+            dialog.setHeaderText("Update Category Details:");
+
+            // Set the button types (OK and Cancel)
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            // Create the grid pane and add the text fields
+            GridPane gridPane = new GridPane();
+            gridPane.setHgap(10);
+            gridPane.setVgap(10);
+            gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+            TextField nameField = new TextField(selectedCategory.getNom());
+            TextField descriptionField = new TextField(selectedCategory.getDescription());
+
+            Button uploadImageButton = new Button("Upload Image");
+            Label imagePathLabel = new Label(selectedCategory.getPhotoUrl());
+
+            uploadImageButton.setOnAction(e -> {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Choose Image File");
+                File file = fileChooser.showOpenDialog(null);
+                if (file != null) {
+                    String imagePath = file.getAbsolutePath();
+                    imagePathLabel.setText(imagePath);
+                }
+            });
+
+            gridPane.add(new Label("Name:"), 0, 0);
+            gridPane.add(nameField, 1, 0);
+            gridPane.add(new Label("Description:"), 0, 1);
+            gridPane.add(descriptionField, 1, 1);
+            gridPane.add(new Label("Image Path:"), 0, 2);
+            gridPane.add(imagePathLabel, 1, 2);
+            gridPane.add(uploadImageButton, 2, 2);
+
+            dialog.getDialogPane().setContent(gridPane);
+
+            // Convert the result to a pair when the OK button is clicked
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == ButtonType.OK) {
+                    return new Pair<>(nameField.getText(), descriptionField.getText());
+                }
+                return null;
+            });
+
+            // Show the dialog and handle the result
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+            result.ifPresent(pair -> {
+                String newName = pair.getKey();
+                String newDescription = pair.getValue();
+                String newImagePath = imagePathLabel.getText();
+                // Update the selected category with the new details
+                selectedCategory.setNom(newName);
+                selectedCategory.setDescription(newDescription);
+                selectedCategory.setPhotoUrl(newImagePath);
+                try {
+                    // Call the modifier method in CategoryService to update the category in the database
+                    CategoryService categoryService = new CategoryService();
+                    categoryService.modifier(selectedCategory);
+                    // Refresh the UI
+                    displayAllCategoriesInTableView();
+                    showAlert("Success", "Category updated successfully.", Alert.AlertType.INFORMATION);
+                } catch (SQLException e) {
+                    showAlert("Error", "Failed to update category: " + e.getMessage(), Alert.AlertType.ERROR);
+                }
+            });
+        } else {
+            showAlert("Error", "Please select a category to update.", Alert.AlertType.ERROR);
+        }
+    }
+
 }

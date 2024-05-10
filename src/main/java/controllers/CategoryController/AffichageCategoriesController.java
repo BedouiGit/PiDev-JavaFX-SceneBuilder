@@ -96,6 +96,9 @@ public class AffichageCategoriesController {
 
         // Create a TextField for searching categories
         TextField searchField = new TextField();
+        searchField.setStyle("-fx-opacity: 0;"); // Make the TextField invisible
+
+
         //searchField.setPromptText("Search categories...");
 
         // Add a listener to the search field to dynamically filter categories

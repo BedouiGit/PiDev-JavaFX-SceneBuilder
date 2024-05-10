@@ -8,7 +8,7 @@ public class Tags {
 
     private String nom;
     private String description;
-    private Set<publication> publications = new HashSet<>();
+
     private String imageT;
     public Tags() {}
 
@@ -17,13 +17,9 @@ public class Tags {
         this.description = description;
         this.imageT = imageT;
     }
-    public Set<publication> getPublications() {
-        return publications;
-    }
 
-    public void setPublications(Set<publication> publications) {
-        this.publications = publications;
-    }
+
+
     public Tags(int id, String nom, String description) {
         this.id = id;
         this.nom = nom;

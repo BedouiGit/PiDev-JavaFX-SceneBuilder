@@ -1,7 +1,7 @@
 package services;
 
 import models.Commentaire;
-import utils.MyDB;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class ServiceCommentaireArticle implements IServiceArticle<Commentaire> {
     private Connection con;
 
     public ServiceCommentaireArticle() {
-        con = MyDB.getInstance().getConnection();
+        con = DBConnection.getInstance().getConnection();
     }
 
     @Override

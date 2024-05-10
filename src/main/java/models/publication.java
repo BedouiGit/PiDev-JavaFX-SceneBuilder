@@ -66,7 +66,7 @@ public class publication {
     }
     public void addTag(Tags tag) {
         tags.add(tag);
-        tag.getPublications().add(this);
+
     }
     public void setTitreP(String titreP) {
         this.titreP = titreP;

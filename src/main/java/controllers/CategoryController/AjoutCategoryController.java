@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import java.io.File;
+import java.time.LocalDate;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import models.category;
@@ -121,8 +123,8 @@ public class AjoutCategoryController {
 
         String name = nameCategoryfx.getText();
         String description = descCategoryfx.getText();
-        String photoUrl = imgName;
 
+        String photoUrl = imgName;
 
 
 
@@ -136,14 +138,16 @@ public class AjoutCategoryController {
             return false;
         }
 
+
+
+
         if (photoUrl.isEmpty()) {
-            showAlert("Error", "Please enter a valid photo URL.");
+            showAlert("Error", "Please upload an image.");
             return false;
         }
 
         return true;
     }
-
 
 
     private void showAlert(String title, String message) {

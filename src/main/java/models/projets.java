@@ -24,6 +24,10 @@ public class projets {
         this.category_id=category_id;
     }
 
+    public projets() {
+
+    }
+
     public int getCategory_id() {
         return category_id;
     }

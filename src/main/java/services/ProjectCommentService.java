@@ -1,6 +1,6 @@
 package services;
 
-import utils.MyDB;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import models.projets;
 
 public class ProjectCommentService {
 
-    Connection cnx = MyDB.getInstance().getConnection();
+    Connection cnx = DBConnection.getInstance().getConnection();
 
     userService userService = new userService();
     public ProjectCommentService() {

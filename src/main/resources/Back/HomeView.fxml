@@ -25,6 +25,16 @@
                           <NumberAxis side="LEFT" />
                       </yAxis>
                   </LineChart>
+
+                  <LineChart fx:id="lineChartCategoryy" layoutX="690.0" layoutY="304.0" prefHeight="284.0" prefWidth="496.0" title="Number of projects per projects">
+                      <xAxis>
+                          <CategoryAxis side="BOTTOM" />
+                      </xAxis>
+                      <yAxis>
+                          <NumberAxis side="LEFT" />
+                      </yAxis>
+                  </LineChart>
+
               </children>
             </AnchorPane>
         </content>

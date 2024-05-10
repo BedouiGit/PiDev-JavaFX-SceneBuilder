@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -12,9 +13,12 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import models.Role;
 import controllers.addUserByAdmin;
+import services.CategoryService;
 import services.userService;
+import utils.NavigationUtil;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +33,14 @@ public class DashboardAdmin {
     @FXML
     private LineChart<String, Number> lineChart;
 
-    public void initialize() {
+
+    @FXML
+    private PieChart pieChartCategory;
+
+    @FXML
+    private LineChart<String, Number> lineChartCategory;
+
+    public void initialize() throws SQLException {
         userService userService = new userService();
         pieChart.getData().clear();
 
@@ -53,7 +64,25 @@ public class DashboardAdmin {
         }
 
         lineChart.getData().add(series);
+
+        // Add initialization logic for the new pie chart and line chart for projects per category
+        CategoryService categoryService = new CategoryService();
+
+        // Populate the pie chart with data for the number of projects per category
+        Map<String, Integer> projectsPerCategory = categoryService.getProjectsPerCategory();
+        for (Map.Entry<String, Integer> entry : projectsPerCategory.entrySet()) {
+            //pieChartCategory.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
+
+        // Populate the line chart with data for the number of projects per category
+        XYChart.Series<String, Number> categorySeries = new XYChart.Series<>();
+        categorySeries.setName("Number of Projects per Category");
+        for (Map.Entry<String, Integer> entry : projectsPerCategory.entrySet()) {
+            categorySeries.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+        //lineChartCategory.getData().add(categorySeries);
     }
+
 
 
     public void logout(){
@@ -137,5 +166,14 @@ public class DashboardAdmin {
         Stage newStage = new Stage();
         newStage.setScene(new Scene(root));
         newStage.show();
+    }
+    @FXML
+    private void goBack(ActionEvent event) {
+
+        try {
+            NavigationUtil.navigateTo("/fxml/Admin/ListcategoryAdmin.fxml", ((Node) event.getSource()).getScene().getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

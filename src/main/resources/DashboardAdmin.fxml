@@ -14,23 +14,19 @@
     <children>
         <SplitPane dividerPositions="0.29797979797979796" layoutX="-1.0" prefHeight="631.0" prefWidth="967.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="252.0" style="-fx-background-color: #f2d5c5;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="248.0">
                     <children>
-                        <Button layoutX="23.0" layoutY="172.0" mnemonicParsing="false" onAction="#openUsersList" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="List User" textFill="#fffdfd" />
-                        <Button layoutX="22.0" layoutY="213.0" mnemonicParsing="false" onAction="#addTep" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="Add User" textFill="WHITE" />
-                        <ImageView fitHeight="150.0" fitWidth="175.0" layoutX="-7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <Button layoutX="73.0" layoutY="284.0" mnemonicParsing="false" onAction="#openUsersList" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="List User" textFill="#fffdfd" />
+                        <Button layoutX="75.0" layoutY="334.0" mnemonicParsing="false" onAction="#addTep" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="Add User" textFill="WHITE" />
+                        <ImageView fitHeight="100.0" fitWidth="210.0" layoutX="29.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/NFTUN.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="logoutButton" layoutX="22.0" layoutY="444.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #2d3047;" text="Logout" textFill="WHITE" />
-                  <Button layoutX="23.0" layoutY="247.0" mnemonicParsing="false" onAction="#openCommandeList" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="Commande" textFill="#fffdfd" />
-                  <Button layoutX="22.0" layoutY="288.0" mnemonicParsing="false" onAction="#ListNFT" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="NFT" textFill="WHITE" />
-                  <Button layoutX="22.0" layoutY="335.0" mnemonicParsing="false" onAction="#ListTags" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="Tags" textFill="#fffdfd" />
-                  <Button layoutX="21.0" layoutY="376.0" mnemonicParsing="false" onAction="#ListPublication" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #2d3047;" text="Publication" textFill="WHITE" />
+                        <Button fx:id="logoutButton" layoutX="66.0" layoutY="579.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #2d3047;" text="Logout" textFill="WHITE" />
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="749.0" style="-fx-background-color: #E8F9FD;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="638.0" prefWidth="683.0" style="-fx-background-color: #E8F9FD;">
                     <children>
                         <PieChart fx:id="pieChart" layoutX="35.0" layoutY="14.0" prefHeight="282.0" prefWidth="603.0" title="Active  / Inactive Users" />
                         <LineChart fx:id="lineChart" layoutX="4.0" layoutY="284.0" prefHeight="306.0" prefWidth="646.0" title="">

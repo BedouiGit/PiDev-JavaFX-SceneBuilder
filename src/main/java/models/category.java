@@ -12,6 +12,10 @@ public class category {
 
     private List<projets> projets = new ArrayList<projets>();
 
+    public category() {
+
+    }
+
     public List<projets> getProjets() {
         return projets;
     }
@@ -76,5 +80,7 @@ public class category {
                 ", photoUrl='" + photoUrl + '\'' +
                 '}';
     }
+
+
 
 }

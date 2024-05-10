@@ -64,7 +64,7 @@ public class CardPub {
 
         // Ajuster la visibilité des boutons en fonction de l'ID de l'utilisateur
         boolean isUserOne = publication.getIdUserId() != 1;
-        btnDelete.setVisible(isUserOne);
+        btnDelete.setVisible(true);
 
         String imagePath = "/images/" + publication.getImageP();
         InputStream imageStream = getClass().getResourceAsStream(imagePath);

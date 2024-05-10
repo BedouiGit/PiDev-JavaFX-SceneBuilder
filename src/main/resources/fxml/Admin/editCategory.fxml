@@ -25,7 +25,6 @@
                     <AnchorPane layoutX="190.0" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="408.0" style="-fx-background-color: #E8F9FD;">
                         <children>
                             <TextField fx:id="userEmailLabel" disable="true" layoutX="154.0" layoutY="51.0" promptText="E-mail" />
-                            <Button layoutX="334.0" layoutY="360.0" onAction="#closeDialog" style="-fx-background-color: #2d3047;" text="Cancel" textFill="WHITE" />
                             <Button layoutX="285.0" layoutY="360.0" onAction="#saveChanges" style="-fx-background-color: #2d3047;" text="Save" textFill="WHITE" />
                             <TextField fx:id="name" layoutX="154.0" layoutY="143.0" promptText="First name" />
                             <TextField fx:id="description" layoutX="154.0" layoutY="174.0" promptText="Last name" />

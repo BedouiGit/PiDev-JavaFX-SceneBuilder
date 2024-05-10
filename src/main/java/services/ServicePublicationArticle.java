@@ -1,7 +1,7 @@
 package services;
 
 import models.publication;
-import utils.MyDB;
+import utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class ServicePublicationArticle implements IServiceArticle<publication> {
     private Connection con;
 
     public ServicePublicationArticle() {
-        con = MyDB.getInstance().getConnection();
+        con = DBConnection.getInstance().getConnection();
     }
 
     @Override

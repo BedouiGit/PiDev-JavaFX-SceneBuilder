@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.Role;
+import utils.NavigationUtil;
 
 import java.io.IOException;
 
@@ -50,7 +52,7 @@ public class Dashboard {
     @FXML
     public void showHome() {
         try {
-            Node home = FXMLLoader.load(getClass().getResource("/Back/HomeView.fxml"));
+            Node home = FXMLLoader.load(getClass().getResource("/statHome.fxml"));
             mainContainer.setCenter(home);
         } catch (IOException e) {
             e.printStackTrace();
@@ -144,6 +146,39 @@ public class Dashboard {
 
 
     }
+
+
+
+    @FXML
+    void news() {
+        try {
+            Node act = FXMLLoader.load(getClass().getResource("/back_office/ShowPost_Back.fxml"));
+            mainContainer.setCenter(act);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, for example, by showing an error message
+        }
+    }
+    @FXML
+    void profileAdmin(){
+        try {
+            Node act = FXMLLoader.load(getClass().getResource("/DashboardAdmin.fxml"));
+            mainContainer.setCenter(act);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, for example, by showing an error message
+        }
+    }
+    @FXML
+    private void goBack(ActionEvent event) {
+
+        try {
+            NavigationUtil.navigateTo("/fxml/Admin/ListcategoryAdmin.fxml", ((Node) event.getSource()).getScene().getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @FXML

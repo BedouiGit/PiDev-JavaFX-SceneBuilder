@@ -1,7 +1,7 @@
 package services;
 
 import models.NFT;
-import util.MaConnexion;
+import utils.MaConnexion;
 
 import java.sql.*;
 import java.util.ArrayList;

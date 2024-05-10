@@ -36,28 +36,16 @@ import java.util.List;
 
 public class DisplayProjectsController {
 
-    @FXML
-    private Button buttonReturn;
-
-    private projets selectedProject;
 
     private int categoryId;
 
     @FXML
     private VBox ProjectVBox;
     private final ProjetsServices projectService = new ProjetsServices(); // Assuming you have a ProjectService object
+    @FXML
+    private VBox paginationContainer; // New VBox to hold pagination
 
     private int ajouterProjetCategoryId;
-
-    private int currentPage = 1;
-    private final int projectsPerPage = 3; // Number of projects to display per page
-
-    // Add pagination buttons
-    @FXML
-    private Button prevButton;
-
-    @FXML
-    private Button nextButton;
 
 
 
@@ -97,12 +85,12 @@ public class DisplayProjectsController {
     }
 
     private void displayProjects(List<projets> projects, int categoryId) {
-        Pagination pagination = new Pagination((int) Math.ceil(projects.size() / 3.0), 0);
+        Pagination pagination = new Pagination((int) Math.ceil(projects.size() / 3.0), 2);
         pagination.setPageFactory(new Callback<Integer, Node>() {
             @Override
             public Node call(Integer pageIndex) {
                 // Create an HBox to contain the projects for the current page
-                HBox projectsHBox = new HBox(20); // Set spacing between nodes
+                HBox projectsHBox = new HBox(40); // Set spacing between nodes
                 projectsHBox.setAlignment(Pos.CENTER); // Align nodes to the center
 
                 // Calculate the range of projects to display for the current page
@@ -128,7 +116,9 @@ public class DisplayProjectsController {
             }
         });
 
-        ProjectVBox.getChildren().add(pagination);
+        paginationContainer.getChildren().clear(); // Clear previous pagination
+        paginationContainer.getChildren().add(pagination); // Add pagination to paginationContainer
+
     }
 
     private void fadeInTransition(Node node) {
@@ -137,10 +127,6 @@ public class DisplayProjectsController {
         fadeIn.setToValue(1.0);
         fadeIn.play();
     }
-
-
-
-
 
 
     private void navigateToProjectDetails(projets project, int categoryId) {
@@ -167,7 +153,7 @@ public class DisplayProjectsController {
     private VBox createProjectNode(projets project, int categoryId) {
         System.out.println("Creating project node for project ID: " + project.getId());
         // Create a VBox to contain the project details
-        VBox projectNode = new VBox(10);
+        VBox projectNode = new VBox(15);
         projectNode.setAlignment(Pos.CENTER);
 
         // ImageView for project image
@@ -194,13 +180,13 @@ public class DisplayProjectsController {
         descriptionLabel.setWrapText(true);
 
         // HBox to contain the buttons with icons
-        HBox iconsHBox = new HBox(10);
+        HBox iconsHBox = new HBox(20);
         iconsHBox.setAlignment(Pos.CENTER);
 
         Button deleteButton = new Button();
         ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/delete.png")));
         deleteIcon.setFitWidth(20);
-        deleteIcon.setFitHeight(20);
+        deleteIcon.setFitHeight(10);
         deleteButton.setGraphic(deleteIcon);
 
         // Set action for delete button
@@ -215,7 +201,7 @@ public class DisplayProjectsController {
         Button modifyButton = new Button();
         ImageView modifyIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/modify.png")));
         modifyIcon.setFitWidth(20);
-        modifyIcon.setFitHeight(20);
+        modifyIcon.setFitHeight(10);
         modifyButton.setGraphic(modifyIcon);
         modifyButton.setOnAction(event -> {
 
@@ -264,7 +250,6 @@ public class DisplayProjectsController {
             e.printStackTrace();
             return;
         }
-
         displayProjectsByCategory(categoryId);
     }
 
@@ -301,8 +286,6 @@ public class DisplayProjectsController {
 
     @FXML
     void naviguezVersAcceuil(ActionEvent event) {
-
-
         try {
             NavigationUtil.navigateTo("/fxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
         } catch (IOException e) {
