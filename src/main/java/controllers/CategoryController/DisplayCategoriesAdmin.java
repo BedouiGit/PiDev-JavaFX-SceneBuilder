@@ -592,45 +592,78 @@ public class DisplayCategoriesAdmin {
             contentStream.beginText();
             contentStream.newLineAtOffset(50, page.getMediaBox().getHeight() - 50);
             contentStream.showText("Liste des catégories:");
+            contentStream.newLine();
+            contentStream.newLine();
             contentStream.endText();
 
-            float currentY = page.getMediaBox().getHeight() - 70;
+            float tableWidth = page.getMediaBox().getWidth() - 100;
+            float yStart = page.getMediaBox().getHeight() - 100;
+            float yPosition = yStart;
+            final float cellMargin = 5f;
+            final float rowHeight = 20f;
+            final float tableMargin = 50f;
 
+            String[][] data = new String[categories.size() + 1][2];
+            data[0][0] = "Nom";
+            data[0][1] = "Description";
+
+            int row = 1;
             for (category cat : categories) {
-                contentStream.beginText(); // Begin new text block for each category
-                contentStream.newLineAtOffset(50, currentY);
-                contentStream.showText("Nom: " + cat.getNom());
-                contentStream.newLineAtOffset(0, -15);
-                contentStream.showText("Description: " + cat.getDescription());
-                contentStream.endText(); // End current text block
-
-                // Load the image from the file path
-                BufferedImage bufferedImage = ImageIO.read(new File(cat.getPhotoUrl()));
-                PDImageXObject pdImage = LosslessFactory.createFromImage(document, bufferedImage);
-
-                // Draw the image onto the PDF
-                contentStream.drawImage(pdImage, 100, currentY - 45, pdImage.getWidth(), pdImage.getHeight());
-
-                currentY -= 90; // Adjust for text and image height
-                if (currentY < 70) {
-                    contentStream.close();
-                    document.addPage(new PDPage(PDRectangle.A4));
-                    page = document.getPage(document.getNumberOfPages() - 1);
-                    contentStream = new PDPageContentStream(document, page);
-                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                    contentStream.beginText(); // Begin new text block for the next page
-                    contentStream.newLineAtOffset(50, page.getMediaBox().getHeight() - 50);
-                }
+                data[row][0] = cat.getNom();
+                data[row][1] = cat.getDescription();
+                row++;
             }
 
-            contentStream.endText(); // End last text block
-            contentStream.close();
+            // Draw the table
+            drawTable(contentStream, yStart, tableWidth, tableMargin, cellMargin, rowHeight, data);
 
+            contentStream.close();
             document.save(cheminFichier);
             document.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void drawTable(PDPageContentStream contentStream, float yStart, float tableWidth, float tableMargin,
+                                  float cellMargin, float rowHeight, String[][] data) throws IOException {
+        float yPosition = yStart;
+        float tableBottomY = yStart - (rowHeight * data.length);
+        float cellWidth = (tableWidth - (2 * tableMargin)) / data[0].length;
+
+        // Draw the rows
+        for (String[] row : data) {
+            // Draw the cells
+            float nextYPosition = yPosition - rowHeight;
+            float nextXPosition = tableMargin;
+            for (String cell : row) {
+                drawCell(contentStream, nextXPosition, yPosition, cellWidth, rowHeight, cellMargin, cell);
+                nextXPosition += cellWidth;
+            }
+
+            yPosition = nextYPosition;
+        }
+
+        // Draw the borders
+        float tableTopY = yStart;
+        contentStream.moveTo(tableMargin, tableTopY);
+        contentStream.lineTo(tableMargin, tableBottomY);
+        contentStream.moveTo(tableWidth - tableMargin, tableTopY);
+        contentStream.lineTo(tableWidth - tableMargin, tableBottomY);
+        for (int i = 0; i <= data.length; i++) {
+            contentStream.moveTo(tableMargin, yStart - (i * rowHeight));
+            contentStream.lineTo(tableWidth - tableMargin, yStart - (i * rowHeight));
+        }
+        contentStream.stroke();
+    }
+
+    private static void drawCell(PDPageContentStream contentStream, float x, float y, float width, float height,
+                                 float margin, String text) throws IOException {
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.newLineAtOffset(x + margin, y - (height / 2));
+        contentStream.showText(text);
+        contentStream.endText();
     }
 
 
@@ -719,6 +752,12 @@ public class DisplayCategoriesAdmin {
         } else {
             showAlert("Error", "Please select a category to update.", Alert.AlertType.ERROR);
         }
+    }
+
+
+    @FXML
+    public void NavigateToChart(ActionEvent event){
+        loadFXML("/fxml/Admin/Chart.fxml", event);
     }
 
 }

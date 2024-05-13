@@ -7,12 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+//import javafx.stage.StageStyle;
 
 public class FxMain extends Application {
 
     private static BorderPane mainLayout;
-    private double x, y;
+    //private double x, y;
 
 
     public static void main(String[] args) {

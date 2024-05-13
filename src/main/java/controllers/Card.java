@@ -26,7 +26,7 @@ public class Card {
         private String[] colors = {"B9E5FF","BDB2FE","FB9AA8","FF5056"};
 
     public void setData(NFT nft) {
-        String imagePath = "file://C:/Users/Khalil/Desktop/integration java/JavaFX-Login/" + nft.getImage();
+        String imagePath = "file:/C:\\Users\\Khalil\\Desktop\\integration java\\PiDev-JavaFX-SceneBuilder\\" + nft.getImage();
         Image image = new Image(imagePath);
         CardImage.setImage(image);
         CardNftName.setText(nft.getName());

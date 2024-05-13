@@ -189,7 +189,8 @@ public class NFTBack {
         ImageCol.setCellValueFactory(new PropertyValueFactory<>("image"));
         ImageCol.setCellFactory(col -> new TableCell<NFT, String>() {
             private final ImageView imageView = new ImageView();
-            private final String basePath = "file:/C:/Users/Khalil/Desktop/integration java/JavaFX-Login/";
+
+            private final String basePath = "file:/C:\\Users\\Khalil\\Desktop\\integration java\\PiDev-JavaFX-SceneBuilder\\";
 
             @Override
             protected void updateItem(String imagePath, boolean empty) {

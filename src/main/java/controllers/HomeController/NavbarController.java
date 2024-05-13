@@ -2,10 +2,12 @@ package controllers.HomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import utils.NavigationUtil;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -38,4 +40,49 @@ public class NavbarController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void navigateToClient(ActionEvent event) {
+        try {
+            NavigationUtil.navigateTo("/fxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void navigateTnwes(ActionEvent event) {
+        try {
+            NavigationUtil.navigateTo("/front_office/ajouterPost.fxml", ((Node) event.getSource()).getScene().getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void AffichagePub(ActionEvent event) {
+        try {
+            NavigationUtil.navigateTo("/Back/Publication/affichagePub.fxml", ((Node) event.getSource()).getScene().getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void navigateToProfile(ActionEvent event) {
+        try {
+            NavigationUtil.navigateTo("/profile.fxml", ((Node) event.getSource()).getScene().getRoot());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void navigatetonft(ActionEvent event) {
+        try {
+            NavigationUtil.navigateTo("/FrontOffice/List_NFTS.fxml", ((Node) event.getSource()).getScene().getRoot());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

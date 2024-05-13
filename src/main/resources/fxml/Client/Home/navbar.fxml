@@ -15,10 +15,12 @@
         </ImageView>
 
         <HBox fx:id="buttonsContainer" alignment="CENTER_RIGHT" prefHeight="79.0" prefWidth="1098.0" spacing="20.0">
-            <Button styleClass="navbar-button" text="Home" />
-            <Button onAction="#navigateToCategories" styleClass="navbar-button" text="Categories" />
-            <Button onAction="#navigateToProjers" styleClass="navbar-button" text="Projets" />
-            <Button styleClass="navbar-button" text="Contact" />
+            <Button onAction="#navigateToProfile" styleClass="navbar-button" text="Profile" />
+            <Button onAction="#navigateTnwes" styleClass="navbar-button" text="News" />
+            <Button onAction="#navigateToClient" styleClass="navbar-button" text="Categories" />
+            <Button onAction="#navigateToProjers" styleClass="navbar-button" text="Commandes" />
+            <Button onAction="#AffichagePub" styleClass="navbar-button" text="Articles" />
+         <Button onAction="#navigatetonft" styleClass="navbar-button" text="NFTS" />
         </HBox>
     </children>
 </HBox>

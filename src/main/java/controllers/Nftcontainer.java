@@ -28,7 +28,7 @@ public class Nftcontainer {
     public void setData(NFT nft){
 
         this.nft = nft;
-        String imagePath = "file:///C:/Users/Khalil/Desktop/integration java/JavaFX-Login/" + nft.getImage();
+        String imagePath = "file:/C:\\Users\\Khalil\\Desktop\\integration java\\PiDev-JavaFX-SceneBuilder\\" + nft.getImage();
         Image image = new Image(imagePath);
         nftimage.setImage(image);
         nftname.setText(nft.getName());

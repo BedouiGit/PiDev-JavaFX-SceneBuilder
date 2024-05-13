@@ -1,6 +1,8 @@
 package controllers.news;
 
 import API.MailerAPI;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import models.Posts;
 import models.Reactions;
 import javafx.application.Platform;
@@ -27,6 +29,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import utils.NavigationUtil;
 
 public class ShowPost {
 
@@ -95,6 +98,14 @@ public class ShowPost {
         return post;
     }
 
+    @FXML
+    private void navigateTnwes(ActionEvent event) {
+        try {
+            NavigationUtil.navigateTo("/front_office/afficherPost.fxml", ((Node) event.getSource()).getScene().getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML

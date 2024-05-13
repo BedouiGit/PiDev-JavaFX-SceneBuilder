@@ -186,7 +186,7 @@ public class DisplayProjectsController {
         Button deleteButton = new Button();
         ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/delete.png")));
         deleteIcon.setFitWidth(20);
-        deleteIcon.setFitHeight(10);
+        deleteIcon.setFitHeight(20);
         deleteButton.setGraphic(deleteIcon);
 
         // Set action for delete button
@@ -201,7 +201,7 @@ public class DisplayProjectsController {
         Button modifyButton = new Button();
         ImageView modifyIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/modify.png")));
         modifyIcon.setFitWidth(20);
-        modifyIcon.setFitHeight(10);
+        modifyIcon.setFitHeight(20);
         modifyButton.setGraphic(modifyIcon);
         modifyButton.setOnAction(event -> {
 

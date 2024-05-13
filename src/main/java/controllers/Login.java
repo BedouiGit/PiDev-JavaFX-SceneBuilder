@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import models.Temp;
 import org.mindrot.jbcrypt.BCrypt;
 import models.Role;
 import models.user;
@@ -65,9 +66,11 @@ public class Login {
 
                 if (u.getRole() == Role.ROLE_ADMIN) {
                     // Redirect to admin dashboard
+                    Temp.setCurrentUser(u);
                     goToAdminDashboard(u);
                 } else if (u.getRole() == Role.ROLE_USER) {
                     // Redirect to user profile
+                    Temp.setCurrentUser(u);
                     goToHomePage(u);
                 }
             } else {
@@ -91,14 +94,14 @@ public class Login {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FrontOffice/List_NFTS.fxml"));
         Parent userRoot = loader.load();
             Profile profileController = loader.getController(); // Assuming ProfileController is the name of your controller class
-            profileController.initData(u);
+            profileController.initData();
             Scene userScene = new Scene(userRoot);
         Stage window = (Stage) loginButton.getScene().getWindow();
         window.setScene(userScene);
         window.show();
     }
     private void goToHomePage(user u) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front/NavBar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/home/Homepage.fxml"));
         Parent userRoot = loader.load();
         Scene userScene = new Scene(userRoot);
         Stage window = (Stage) loginButton.getScene().getWindow();
