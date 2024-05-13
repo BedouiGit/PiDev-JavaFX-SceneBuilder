@@ -59,7 +59,7 @@ public class Stats implements Initializable {
                         new PieChart.Data("Moderately Engaging", moderateEngagementCount),
                         new PieChart.Data("Low Engaging", lowEngagementCount));
         pieChart.setData(pieChartData);
-        pieChart.setTitle("Post Engagement");
+        pieChart.setTitle("News Engagement");
 
 
 

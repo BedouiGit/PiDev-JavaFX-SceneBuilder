@@ -51,17 +51,20 @@ public class editPost {
 
     @FXML
     void OnEditPostClicked(MouseEvent event) throws SQLException {
+        if (!idPost.getText().isEmpty() && !username.getText().isEmpty() && !contentTF.getText().isEmpty()) {
+            int postId = Integer.parseInt(idPost.getText());
+            String newTitle = username.getText();
+            String newContent = contentTF.getText();
 
-        Posts post= new Posts(idPost.getText(),username.getText(),contentTF.getText());
-        ServicePosts ps=new ServicePosts();
-        //post.setContent(content.getId());
-        ps.modifier(post);
-
-
-
-
-
+            Posts postToUpdate = new Posts(postId, newTitle, newContent);
+            ServicePosts service = new ServicePosts();
+            service.modifier(postToUpdate);
+        } else {
+            // Handle empty fields
+            // For example, show an alert or provide a message to the user
+        }
     }
+
 
 
 

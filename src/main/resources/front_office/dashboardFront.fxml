@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +13,7 @@
 
 <AnchorPane fx:id="midlast" prefHeight="768.0" prefWidth="1143.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardFrontController">
     <children>
-        <AnchorPane layoutX="21.0" layoutY="-1.0" prefHeight="756.0" prefWidth="1158.0" styleClass="middle-menu" stylesheets="@../img/UI.css">
+        <AnchorPane layoutX="11.0" prefHeight="756.0" prefWidth="1158.0" styleClass="middle-menu" stylesheets="@../img/UI.css">
             <children>
                 <Button layoutX="711.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="btn-trans" />
                 <Label layoutX="14.0" layoutY="13.0" prefHeight="25.0" prefWidth="130.0">
@@ -23,39 +22,21 @@
                     </font>
                 </Label>
                 <Label layoutX="882.0" layoutY="36.0" text="14 April 2024, Friday" textFill="#00000074" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b0c4de6b" height="151.0" layoutX="268.0" layoutY="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="731.0">
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b0c4de6b" height="151.0" layoutX="237.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="758.0">
                     <styleClass>
                         <String fx:value="mid-menu" />
                         <String fx:value="shadow-rose" />
                     </styleClass></Rectangle>
-                <Label layoutX="399.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" text="You've learned 80% of your goal this week!" />
-                <Label layoutX="312.0" layoutY="85.0" prefHeight="62.0" prefWidth="302.0" text="Welcome to NFTUN!" textFill="#1e2491">
+                <Label layoutX="327.0" layoutY="151.0" prefHeight="18.0" prefWidth="302.0" text=" Empowering Digital Ownership, Redefining Creativity" textFill="#6b0066" />
+                <Label graphicTextGap="6.0" layoutX="336.0" layoutY="85.0" prefHeight="62.0" prefWidth="302.0" text="Welcome to NFTUN!" textFill="#1e2491">
                     <font>
                         <Font name="Tahoma Bold" size="23.0" />
                     </font>
                 </Label>
                 <Label layoutX="763.0" layoutY="676.0" text="Deconexion " />
-                <AnchorPane layoutX="27.0" layoutY="205.0" prefHeight="68.0" prefWidth="210.0" stylesheets="@../img/UI.css">
-                    <children>
-                        <Label layoutX="47.0" layoutY="21.0" prefHeight="25.0" prefWidth="103.0" text="Coworkings" textFill="WHITE">
-                            <font>
-                                <Font name="Tahoma Bold" size="17.0" />
-                            </font>
-                        </Label>
-                        <ImageView fitHeight="36.0" fitWidth="25.0" layoutX="171.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../img/arrow1.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                    <styleClass>
-                        <String fx:value="low-mid-menu1" />
-                        <String fx:value="shadow-blue" />
-                    </styleClass>
-                </AnchorPane>
                 <AnchorPane fx:id="logementbutton" layoutX="27.0" layoutY="290.0" prefHeight="68.0" prefWidth="210.0">
                     <children>
-                        <Label layoutX="43.0" layoutY="19.0" prefHeight="25.0" prefWidth="129.0" text="Logements" textFill="WHITE">
+                        <Label layoutX="43.0" layoutY="19.0" prefHeight="25.0" prefWidth="129.0" text="login" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma Bold" size="17.0" />
                             </font>
@@ -65,14 +46,6 @@
                                 <Image url="@../img/arrow1.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="clicklog" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="142.0" styleClass="transparent" stylesheets="@../styles.css">
-                            <font>
-                                <Font size="0.5" />
-                            </font>
-                            <effect>
-                                <Bloom />
-                            </effect>
-                        </Button>
                     </children>
                     <styleClass>
                         <String fx:value="low-mid-menu2" />
@@ -89,10 +62,10 @@
                         <Image url="@../img/search.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="399.0" layoutY="174.0" prefHeight="25.0" prefWidth="250.0" text="Keep it up and improve your results!" />
-                <ImageView fitHeight="135.0" fitWidth="130.0" layoutX="721.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                <Label layoutX="317.0" layoutY="176.0" prefHeight="26.0" prefWidth="322.0" text="Join us at NFTun and explore the endless possibilities!" textFill="#6e027e" />
+                <ImageView fitHeight="127.0" fitWidth="255.0" layoutX="699.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../../../../Users/pc/Pictures/NFT/j.jpg" />
+                        <Image url="@../../../../../../../Users/pc/Pictures/NFT/nftmetaverse.jpg" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="19.0" fitWidth="50.0" layoutX="830.0" layoutY="675.0" pickOnBounds="true" preserveRatio="true">
@@ -102,7 +75,7 @@
                 </ImageView>
                 <AnchorPane layoutX="27.0" layoutY="451.0" prefHeight="68.0" prefWidth="210.0">
                     <children>
-                        <Label layoutX="43.0" layoutY="19.0" prefHeight="25.0" prefWidth="129.0" text="Restaurents" textFill="WHITE">
+                        <Label layoutX="43.0" layoutY="19.0" prefHeight="25.0" prefWidth="129.0" text="news" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma Bold" size="17.0" />
                             </font>
@@ -120,7 +93,7 @@
                 </AnchorPane>
                 <AnchorPane layoutX="27.0" layoutY="369.0" prefHeight="68.0" prefWidth="210.0" stylesheets="@../img/UI.css">
                     <children>
-                        <Label layoutX="47.0" layoutY="21.0" prefHeight="25.0" prefWidth="103.0" text="Activités" textFill="WHITE">
+                        <Label layoutX="47.0" layoutY="21.0" prefHeight="25.0" prefWidth="103.0" text="projects" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma Bold" size="17.0" />
                             </font>
@@ -138,7 +111,7 @@
                 </AnchorPane>
                 <AnchorPane layoutX="27.0" layoutY="529.0" prefHeight="68.0" prefWidth="210.0" stylesheets="@../img/UI.css">
                     <children>
-                        <Label layoutX="47.0" layoutY="21.0" prefHeight="25.0" prefWidth="103.0" text="Offres" textFill="WHITE">
+                        <Label layoutX="47.0" layoutY="21.0" prefHeight="25.0" prefWidth="103.0" text="cart" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma Bold" size="17.0" />
                             </font>
@@ -156,7 +129,7 @@
                 </AnchorPane>
                 <AnchorPane layoutX="27.0" layoutY="617.0" prefHeight="68.0" prefWidth="210.0">
                     <children>
-                        <Label layoutX="31.0" layoutY="19.0" prefHeight="26.0" prefWidth="142.0" text="Fils d'actualités" textFill="WHITE">
+                        <Label layoutX="31.0" layoutY="19.0" prefHeight="26.0" prefWidth="142.0" text="articles" textFill="WHITE">
                             <font>
                                 <Font name="Tahoma Bold" size="17.0" />
                             </font>
@@ -172,7 +145,7 @@
                         <String fx:value="shadow-blue-fonsee" />
                     </styleClass>
                 </AnchorPane>
-                <ImageView fitHeight="68.0" fitWidth="155.0" layoutX="57.0" layoutY="51.0" opacity="0.84" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="84.0" fitWidth="183.0" layoutX="24.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                     <image>
                         <Image url="@../../../../../../../Users/pc/Desktop/3A/projet%20symfony/logoF.png" />
                     </image>
@@ -184,6 +157,16 @@
                         </DropShadow>
                     </effect>
                 </ImageView>
+            <ImageView fitHeight="113.0" fitWidth="76.0" layoutX="251.0" layoutY="93.0" opacity="0.92" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/pc/Downloads/pngtree-bright-color-flat-geometry-color-line-png-image_3589501-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="151.0" fitWidth="159.0" layoutX="40.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/pc/Pictures/NFT/pngtree-3d-nft-design-ilustration-all-editable-vectors-png-image_6134272.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
     </children>
