@@ -94,8 +94,6 @@
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
     -fx-background-color: #353A56;
-    -fx-border-style: solid;
-    -fx-border-color: #141313;
 }
 
 .btn_workbenchCategories:hover {

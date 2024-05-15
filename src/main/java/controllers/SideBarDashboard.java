@@ -22,5 +22,27 @@ public class SideBarDashboard {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    void NavigateToDash(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dash.fxml"));
+        Parent categoriesRoot = loader.load();
 
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(categoriesRoot);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void NavigateToNFT(ActionEvent event)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NFTFxml/BackOffice/BackNft.fxml"));
+        Parent categoriesRoot = loader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(categoriesRoot);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -57,7 +57,7 @@ public class AjoutCategoryController {
     private void goBack(ActionEvent event) {
 
         try {
-            NavigationUtil.navigateTo("/fxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/CategoriesFxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
         } catch (IOException e) {
             e.printStackTrace();
         }

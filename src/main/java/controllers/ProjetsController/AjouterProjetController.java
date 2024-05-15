@@ -78,7 +78,7 @@ public class AjouterProjetController implements Initializable {
     @FXML
     public void navigeuzVersAffichercategories(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Client/Categories/DisplayCategories.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/CategoriesFxml/Client/Categories/DisplayCategories.fxml"));
             // The above path should be adjusted based on the actual location of AfficherCategories.fxml
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -134,7 +134,7 @@ public class AjouterProjetController implements Initializable {
     public void navigateToAfficher() {
         try {
             // Load the FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/Projets/DisplayProjects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriesFxml/Client/Projets/DisplayProjects.fxml"));
             Parent root = loader.load();
 
             // Get the controller

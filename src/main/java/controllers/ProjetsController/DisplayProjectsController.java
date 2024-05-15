@@ -270,7 +270,7 @@ public class DisplayProjectsController {
     @FXML
     public void naviguezVersAjouterProjets(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/Projets/AjouterProjet.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriesFxml/Client/Projets/AjouterProjet.fxml"));
             Parent root = loader.load();
 
             AjouterProjetController controller = loader.getController();
@@ -287,7 +287,7 @@ public class DisplayProjectsController {
     @FXML
     void naviguezVersAcceuil(ActionEvent event) {
         try {
-            NavigationUtil.navigateTo("/fxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/CategoriesFxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
         } catch (IOException e) {
             e.printStackTrace();
         }

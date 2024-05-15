@@ -72,7 +72,7 @@ public class AffichageCategoriesController {
     @FXML
     public void naviguezVersAjoutercategory(ActionEvent event) {
         try {
-            NavigationUtil.navigateTo("/fxml/Client/Categories/CreateCategory.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/CategoriesFxml/Client/Categories/CreateCategory.fxml", ((Node) event.getSource()).getScene().getRoot());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -235,7 +235,7 @@ public class AffichageCategoriesController {
     private void navigateToDetailsPage(category cat) {
         try {
             // Load the DisplayProjects.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/Projets/DisplayProjects.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriesFxml/Client/Projets/DisplayProjects.fxml"));
             Parent root = loader.load();
 
             // Get the controller for the loaded DisplayProjects.fxml file

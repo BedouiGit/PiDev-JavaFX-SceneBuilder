@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="827.0" prefWidth="1320.0" styleClass="root" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NFTController.BackFormCommande">
+
+    <children>
+        <fx:include source="/fxml/UserFxml/SidebarDashboard.fxml"/>
+
+        <Pane prefHeight="781.0" prefWidth="1040.0" style="-fx-background-color: #f3fafa;">
+
+            <children>
+
+                <Label layoutX="47.0" layoutY="128.0" text="Product Management">
+
+                    <font>
+
+                        <Font name="Century Gothic Bold" size="34.0" />
+
+                    </font>
+
+                </Label>
+                <Button fx:id="addT" layoutX="850.0" layoutY="755.0" onAction="#updatecommande" prefHeight="53.0" prefWidth="162.0" style="-fx-background-color: #28a745;" styleClass="btn_workbench11" stylesheets="@../../../style/style.css" text="Submit" textFill="WHITE">
+                    <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="EmailField" layoutX="65.0" layoutY="399.0" prefHeight="43.0" prefWidth="235.0" style="-fx-background-color: #f3fafa; -fx-border-color: 0000;" styleClass="pane_1111" />
+                <Label layoutX="80.0" layoutY="363.0" text="Email">
+                    <font>
+                        <Font name="Century Gothic Bold" size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="WalletField" layoutX="362.0" layoutY="399.0" prefHeight="43.0" prefWidth="235.0" style="-fx-background-color: #f3fafa; -fx-border-color: 0000;" styleClass="pane_1111" />
+                <Label layoutX="454.0" layoutY="363.0" text="Wallet">
+                    <font>
+                        <Font name="Century Gothic Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="769.0" layoutY="372.0" text="Total">
+                    <font>
+                        <Font name="Century Gothic Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btn_workbench1111121" layoutX="682.0" layoutY="755.0" onAction="#cancelcommande" prefHeight="53.0" prefWidth="162.0" style="-fx-background-color: #dc3545;" styleClass="btn_workbench11" stylesheets="@../../../style/style.css" text="Cancel" textFill="WHITE">
+                    <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                    </font>
+                </Button>
+                <TextField fx:id="TotalField" layoutX="691.0" layoutY="399.0" prefHeight="43.0" prefWidth="235.0" style="-fx-background-color: #f3fafa; -fx-border-color: 0000;" styleClass="round-layout" stylesheets="@../../../css/styles.css" />
+                <Button fx:id="home" layoutX="94.0" layoutY="755.0" onAction="#back" prefHeight="53.0" prefWidth="162.0" style="-fx-background-color: #dc3545;" styleClass="btn_workbench11" stylesheets="@../../../style/style.css" text="back" textFill="WHITE">
+                    <font>
+                        <Font name="Century Gothic Bold" size="13.0" />
+                    </font>
+                </Button>
+
+            </children>
+
+        </Pane>
+
+    </children>
+
+</HBox>

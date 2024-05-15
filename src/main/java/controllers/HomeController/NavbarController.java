@@ -43,7 +43,8 @@ public class NavbarController {
     @FXML
     private void navigateToClient(ActionEvent event) {
         try {
-            NavigationUtil.navigateTo("/fxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/CategoriesFxml/Client/Categories/DisplayCategories.fxml", ((Node) event.getSource()).getScene().getRoot());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +81,7 @@ public class NavbarController {
     @FXML
     private void navigatetonft(ActionEvent event) {
         try {
-            NavigationUtil.navigateTo("/FrontOffice/List_NFTS.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/NFTFxml/FrontOffice/List_NFTS.fxml", ((Node) event.getSource()).getScene().getRoot());
 
         } catch (IOException e) {
             e.printStackTrace();
