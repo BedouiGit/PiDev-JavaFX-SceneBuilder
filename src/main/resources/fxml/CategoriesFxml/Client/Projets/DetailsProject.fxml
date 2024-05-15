@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="833.0" prefWidth="500.0" spacing="10.0" style="-fx-border-color: #262428; -fx-border-radius: 10; -fx-background-color: #E5E7E6;" styleClass="post-background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProjetsController.DetailsProjectController">
+    <children>
+        <!-- Navbar -->
+        <HBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-2.0" prefHeight="100.0" prefWidth="1657.0">
+            <fx:include source="../Home/navbar.fxml" />
+        </HBox>
+        <!-- Spacer -->
+        <HBox prefHeight="50.0" spacing="10.0">
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+        <!-- Details -->
+        <VBox fx:id="firstborder" alignment="TOP_CENTER" prefHeight="150.0" prefWidth="542.0">
+            <children>
+                <!-- Title -->
+                <HBox prefHeight="26.0" prefWidth="500.0">
+                    <children>
+                        <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Text>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                    </padding>
+                </HBox>
+                <!-- Description -->
+                <HBox maxWidth="500.0" minHeight="50.0" prefWidth="500.0">
+                    <children>
+                        <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="479.60511016845703">
+                            <HBox.margin>
+                                <Insets left="15.0" />
+                            </HBox.margin>
+                        </Text>
+                    </children>
+                    <padding>
+                        <Insets left="5.0" right="5.0" />
+                    </padding>
+                </HBox>
+                <!-- Divider -->
+                <Pane maxHeight="1.0" maxWidth="300.0" minWidth="450.0" prefHeight="1.0" prefWidth="300.0" style="-fx-border-color: #262428; -fx-border-width: 0.5;" />
+            </children>
+        </VBox>
+        <!-- Spacer -->
+        <HBox prefHeight="30.0" spacing="10.0">
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+        <!-- Image -->
+        <ImageView fx:id="imgPost" fitHeight="416.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
+        <!-- Spacer -->
+        <HBox alignment="TOP_RIGHT">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="30.0" top="5.0" />
+            </padding>
+        </HBox>
+        <!-- Divider -->
+        <Pane maxHeight="1.0" maxWidth="300.0" minWidth="450.0" prefHeight="1.0" prefWidth="300.0" style="-fx-border-color: #262428; -fx-border-width: 0.5;" />
+        <!-- Reaction and Comment Section -->
+        <HBox maxWidth="1.7976931348623157E308" styleClass="top-border">
+            <children>
+                <!-- Reaction -->
+                <HBox fx:id="showCommets" alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane alignment="CENTER_LEFT">
+                            <children>
+                                <HBox fx:id="reactionsContainer" maxWidth="-Infinity" styleClass="reactions-container" visible="false">
+                                    <children>
+                                        <ImageView fx:id="imgLike" fitHeight="50.0" fitWidth="50.0" onMousePressed="#onReactionImgPressed" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/img/ic_like.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                    <StackPane.margin>
+                                        <Insets left="10.0" />
+                                    </StackPane.margin>
+                                    <padding>
+                                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                        <HBox fx:id="likeContainer" alignment="CENTER" onMousePressed="#onLikeContainerPressed" onMouseReleased="#onLikeContainerMouseReleased" spacing="10.0">
+                            <children>
+                                <ImageView fx:id="imgReaction" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/img/ic_like_outline.png" />
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="reactionName" text="Like">
+                                    <font>
+                                        <Font name="Segoe UI Semibold" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <padding>
+                <Insets bottom="10.0" top="10.0" />
+            </padding>
+        </HBox>
+        <!-- Comments Section -->
+        <VBox fx:id="CommentsContainer" prefHeight="133.0" prefWidth="566.0">
+            <children>
+                <HBox prefHeight="29.0" prefWidth="566.0" spacing="5.0">
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</VBox>
+

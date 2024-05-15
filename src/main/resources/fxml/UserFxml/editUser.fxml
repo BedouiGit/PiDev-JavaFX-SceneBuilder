@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserController.EditUser">
+    <SplitPane layoutX="-2.0" prefHeight="394.0" prefWidth="600.0">
+        <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #f2d5c5;">
+                <children>
+                    <ImageView fitHeight="393.0" fitWidth="174.0" layoutX="1.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../images/NFTUN.png" />
+                        </image>
+                    </ImageView>
+                  <AnchorPane layoutX="190.0" layoutY="-2.0" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="408.0" style="-fx-background-color: #E8F9FD;">
+                      <children>
+                          <TextField fx:id="userEmailLabel" disable="true" layoutX="154.0" layoutY="51.0" promptText="E-mail" />
+                      <Button layoutX="334.0" layoutY="360.0" onAction="#closeDialog" style="-fx-background-color: #2d3047;" text="Cancel" textFill="WHITE" />
+                      <Button layoutX="285.0" layoutY="360.0" onAction="#saveChanges" style="-fx-background-color: #2d3047;" text="Save" textFill="WHITE" />
+                     <TextField fx:id="fname" layoutX="154.0" layoutY="143.0" promptText="First name" />
+                     <TextField fx:id="lname" layoutX="154.0" layoutY="174.0" promptText="Last name" />
+                     <TextField fx:id="age" layoutX="154.0" layoutY="208.0" promptText="Age" />
+                     <TextField fx:id="address" layoutX="154.0" layoutY="241.0" promptText="Address" />
+                     <TextField fx:id="tel" layoutX="155.0" layoutY="274.0" promptText="Phone Number" />
+                     <ComboBox fx:id="gender" layoutX="154.0" layoutY="306.0" prefWidth="150.0" promptText="Gender">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Male" />
+                                 <String fx:value="Female" />
+                             </FXCollections>
+                         </items>
+                     </ComboBox>
+                  
+                                        <Label layoutX="81.0" layoutY="115.0" text="User Status:" />
+                     <ComboBox fx:id="role" layoutX="154.0" layoutY="83.0" prefWidth="150.0" promptText="Role" >
+                          <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                  <String fx:value="ROLE_USER" />
+                                  <String fx:value="ROLE_ADMIN" />
+                              </FXCollections>
+                          </items>
+                     </ComboBox>
+                      </children>
+            
+                              </AnchorPane>
+                </children>
+         </AnchorPane>
+        </items>
+    </SplitPane>
+    <CheckBox fx:id="userActiveCheckBox" layoutX="355.0" layoutY="117.0" />
+</AnchorPane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProjetsController.DisplayProjectsController">
+
+
+    <children>
+        <HBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-2.0" prefHeight="100.0" prefWidth="1657.0">
+            <fx:include source="../Home/navbar.fxml" />
+        </HBox>
+
+        <Button contentDisplay="TOP" layoutX="1329.0" layoutY="199.0" mnemonicParsing="false" onAction="#naviguezVersAjouterProjets" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="Ajouter Projet" textOverrun="WORD_ELLIPSIS">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Button>
+        <!--        <Button fx:id="deletebuttton" disable="true" layoutX="918.0" layoutY="455.0" mnemonicParsing="false" onAction="#deletecategory" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="Supprimer" />-->
+
+        <!--   <Button fx:id="editButton" disable="true" layoutX="919.0" layoutY="369.0" mnemonicParsing="false" onAction="#naviguezVersmodifiercategory" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="Modifier" />
+           <Button fx:id="addEvaluationButton" disable="true" layoutX="919.0" layoutY="539.0" mnemonicParsing="false" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="Ajouter " />-->
+        <Button fx:id="buttonReturn" layoutX="198.0" layoutY="697.0" mnemonicParsing="false" onAction="#naviguezVersAcceuil" prefHeight="30.0" prefWidth="134.0" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="return" />
+        <VBox fx:id="ProjectVBox" alignment="CENTER" layoutX="265.0" layoutY="214.0" prefHeight="30.0" prefWidth="991.0" spacing="20.0">
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding></VBox>
+
+        <VBox fx:id="paginationContainer" alignment="CENTER" layoutX="265.0" layoutY="214.0" prefHeight="30.0" prefWidth="991.0" spacing="20.0"/>
+        <Label layoutX="675.0" layoutY="158.0" text="Les projets" textFill="#9b9b9b">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+
+        <!--        <Button fx:id="AfficherDetails" disable="true" layoutX="919.0" layoutY="203.0" mnemonicParsing="false" onAction="#naviguezVersDetailsProjets" prefHeight="30.0" prefWidth="133.0" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="Afficher les details" />-->
+    </children>
+</AnchorPane>

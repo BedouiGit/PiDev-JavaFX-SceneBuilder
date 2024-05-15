@@ -1,0 +1,75 @@
+/* Common styles for the navbar */
+.navbar-container {
+    -fx-background-color: #663284; /* Navbar background color */
+    -fx-padding: 10px; /* Add some padding for better appearance */
+}
+
+.navbar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-color: white; /* Button border color */
+    -fx-border-width: 2px; /* Button border width */
+    -fx-border-radius: 5px; /* Button border radius */
+    -fx-padding: 8px 15px; /* Button padding */
+}
+
+.navbar-button:hover {
+    -fx-background-color: #FFFFFF33; /* Button background color on hover */
+    -fx-border-color: white; /* Button border color on hover */
+}
+
+.navbar-button:pressed {
+    -fx-background-color: #FFFFFF66; /* Button background color when pressed */
+}
+
+/* Navbar specific styles */
+.navbar-container .label {
+    -fx-text-fill: white; /* Text color for navbar labels */
+    -fx-font-size: 20px; /* Font size for navbar labels */
+}
+
+.navbar-container .button {
+    -fx-text-fill: white; /* Text color for navbar buttons */
+    -fx-font-size: 18px; /* Font size for navbar buttons */
+    -fx-background-color: transparent; /* Transparent background for navbar buttons */
+}
+
+/* Main content styles */
+.label {
+    -fx-font-size: 20px; /* Default font size for labels */
+}
+
+/* Unique styles for each label */
+#titleLabel {
+    -fx-text-fill: #663284; /* Text color for title label */
+    -fx-font-size: 50px; /* Font size for title label */
+    -fx-font-family: "Arial Bold"; /* Font family for title label */
+}
+
+#descriptionLabel {
+    -fx-text-fill: #262428; /* Text color for description label */
+    -fx-font-size: 18px; /* Font size for description label */
+    -fx-font-family: "Baskerville Old Face"; /* Font family for description label */
+}
+
+#collectionLabel {
+    -fx-text-fill: #262428; /* Text color for collection label */
+    -fx-font-size: 22px; /* Font size for collection label */
+    -fx-font-family: "Baskerville Old Face"; /* Font family for collection label */
+}
+
+#quoteLabel {
+    -fx-text-fill: #384454; /* Text color for quote label */
+    -fx-font-size: 18px; /* Font size for quote label */
+    -fx-font-family: "Calibri Light"; /* Font family for quote label */
+}
+
+#connecter {
+    -fx-text-fill: white; /* Text color for connecter button */
+    -fx-font-size: 18px; /* Font size for connecter button */
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #765CA9, #A176D2); /* Button gradient background */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
