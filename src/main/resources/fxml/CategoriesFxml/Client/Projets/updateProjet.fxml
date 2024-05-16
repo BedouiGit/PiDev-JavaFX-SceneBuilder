@@ -32,7 +32,7 @@
         </Text>
         <TextField fx:id="wallet_address" layoutX="529.0" layoutY="383.0" prefHeight="26.0" prefWidth="221.0" />
 
-        <Button fx:id="btnUpdate" layoutX="769.0" layoutY="580.0" mnemonicParsing="false" onAction="#updateProject" prefHeight="30.0" prefWidth="68.0" styleClass="login-btn" stylesheets="@../../../styles/style.css" text="Update" />
+        <Button fx:id="btnUpdate" layoutX="769.0" layoutY="580.0" mnemonicParsing="false" onAction="#updateProject" prefHeight="30.0" prefWidth="68.0" styleClass="login-btn" stylesheets="@/styles/style.css" text="Update" />
         <Text fx:id="labelUpdateTitle" fill="#e41313" layoutX="510.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="update title" visible="false" />
         <Label fx:id="labelUpdateProject" layoutX="563.0" layoutY="127.0" text="Update Project" textFill="#9b9b9b">
             <font>
@@ -41,7 +41,7 @@
         </Label>
 
         <ImageView fx:id="imageView" fitHeight="220.0" fitWidth="233.0" layoutX="767.0" layoutY="236.0" />
-        <Button fx:id="uploadImage" layoutX="828.0" layoutY="474.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="34.0" prefWidth="90.0" styleClass="normalMainBtn" stylesheets="@../../../styles/style.css" text="Upload Image" />
+        <Button fx:id="uploadImage" layoutX="828.0" layoutY="474.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="34.0" prefWidth="90.0" styleClass="normalMainBtn" stylesheets="@/styles/style.css" text="Upload Image" />
 
 
 

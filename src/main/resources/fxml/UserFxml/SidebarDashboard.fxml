@@ -52,7 +52,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button layoutX="39.0" layoutY="277.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="120.0" styleClass="btn_workbenchCategories" text="Articles" textFill="WHITE">
+                <Button layoutX="39.0" layoutY="277.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="120.0" styleClass="btn_workbenchCategories" text="creation articles" textFill="WHITE"  onAction="#NavigateToPublication">
                     <font>
                         <Font name="Arial Black" size="15.0" />
                     </font>
@@ -64,6 +64,9 @@
                         </ImageView>
                     </graphic>
                 </Button>
+
+
+
                 <Button layoutX="44.0" layoutY="329.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="110.0" styleClass="btn_workbenchCategories" text="News" textFill="WHITE" onAction="#NavigateToNews">
                     <font>
                         <Font name="Arial Black" size="15.0" />
@@ -88,6 +91,19 @@
                         </ImageView>
                     </graphic>
                 </Button>
+                <Button fx:id="btnProjects" layoutX="21.0" layoutY="387.0" mnemonicParsing="false" onAction="#NavigateToCategories" prefHeight="46.0" prefWidth="167.0" styleClass="btn_workbenchCategories" text="Projects" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Black" size="15.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="31.0">
+                            <image>
+                                <Image url="@../../images/cible.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
                 <Button layoutX="37.0" layoutY="433.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="135.0" styleClass="btn_workbenchCategories" text="statistics" textFill="WHITE">
                     <font>
                         <Font name="Arial Black" size="15.0" />
@@ -100,18 +116,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="logoutButton" layoutX="37.0" layoutY="696.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="135.0" styleClass="btn_workbench11" text="Logout" textFill="WHITE">
-                    <font>
-                        <Font name="Arial Black" size="15.0" />
-                    </font>
-                    <graphic>
-                        <ImageView fitHeight="37.0" fitWidth="35.0">
-                            <image>
-                                <Image url="@../../images/sedeconnecter.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
+
             </children>
         </AnchorPane>
     </children>

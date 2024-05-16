@@ -71,7 +71,7 @@ public class DisplayProjectsController {
 
             // Set custom icon (optional)
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/imges/icons/boy-avater.png")));
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/icons/boy-avater.png")));
 
             // Customize alert animation
             fadeInTransition(alert.getDialogPane());
@@ -184,7 +184,7 @@ public class DisplayProjectsController {
         iconsHBox.setAlignment(Pos.CENTER);
 
         Button deleteButton = new Button();
-        ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/delete.png")));
+        ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons/delete.png")));
         deleteIcon.setFitWidth(20);
         deleteIcon.setFitHeight(20);
         deleteButton.setGraphic(deleteIcon);
@@ -199,14 +199,14 @@ public class DisplayProjectsController {
         });
 
         Button modifyButton = new Button();
-        ImageView modifyIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/modify.png")));
+        ImageView modifyIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons/modify.png")));
         modifyIcon.setFitWidth(20);
         modifyIcon.setFitHeight(20);
         modifyButton.setGraphic(modifyIcon);
         modifyButton.setOnAction(event -> {
 
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Client/Projets/updateProjet.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriesFxml/Client/Projets/updateProjet.fxml"));
                 Parent root = loader.load();
 
                 // Get the controller for the loaded ModifyProject.fxml file
@@ -223,7 +223,7 @@ public class DisplayProjectsController {
         });
 
         Button detailsButton = new Button();
-        ImageView detailsIcon = new ImageView(new Image(getClass().getResourceAsStream("/imges/icons/deatils.png")));
+        ImageView detailsIcon = new ImageView(new Image(getClass().getResourceAsStream("/images/icons/deatils.png")));
         detailsIcon.setFitWidth(20);
         detailsIcon.setFitHeight(20);
         detailsButton.setGraphic(detailsIcon);

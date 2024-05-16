@@ -23,6 +23,18 @@ public class SideBarDashboard {
         stage.show();
     }
     @FXML
+    void NavigateToTags(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriesFxml/Admin/ListcategoryAdmin.fxml"));
+        Parent categoriesRoot = loader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(categoriesRoot);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     void NavigateToDash(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dash.fxml"));
         Parent categoriesRoot = loader.load();
@@ -57,4 +69,27 @@ public class SideBarDashboard {
         stage.setScene(scene);
         stage.show();
     }
-}
+
+
+    @FXML
+    void NavigateToPublication(ActionEvent event)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Publicationfxml/affichagePub.fxml"));
+        Parent categoriesRoot = loader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(categoriesRoot);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void NavigateTocreatePublication(ActionEvent event)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Publicationfxml/ajoutPub.fxml"));
+        Parent categoriesRoot = loader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(categoriesRoot);
+        stage.setScene(scene);
+        stage.show();
+    }}
