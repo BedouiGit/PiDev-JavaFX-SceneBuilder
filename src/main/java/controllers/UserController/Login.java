@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 import models.Role;
 import models.user;
+import services.PasswordEncoder;
 import services.userService;
 
 import java.io.IOException;
@@ -47,7 +48,10 @@ public class Login {
                 return;
             }
             String enteredPassword = passwordTextfield.getText();
-            boolean passwordMatch = BCrypt.checkpw(enteredPassword, u.getPassword());
+            System.out.println(enteredPassword + "aaaaaaaaaaa");
+            // boolean passwordMatch = BCrypt.checkpw(enteredPassword, u.getPassword());
+            boolean passwordMatch = PasswordEncoder.matches(enteredPassword,u.getPassword());
+            System.out.println(passwordMatch);
             if (passwordMatch) {
                 // Set up session
 
