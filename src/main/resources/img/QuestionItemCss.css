@@ -1,0 +1,47 @@
+/* Anchor with violet background */
+.anchor-violet {
+    -fx-background-color: #461a42;
+    /* Set text color */
+}
+
+/* Anchor with orange background */
+.anchor-orange {
+    -fx-background-color: #efa929;
+}
+
+/* Anchor with light blue background */
+.anchor-light-blue {
+    -fx-background-color: #2d9da6;
+}
+
+/* Anchor with red background */
+.anchor-red {
+    -fx-background-color: #d5546d;
+}
+
+/* Anchor with dark blue background */
+.anchor-dark-blue {
+    -fx-background-color: #2d70ae;
+}
+
+/* Transparent text fields */
+.text-area {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+.anchor{
+
+
+-fx-background-radius:10px;}

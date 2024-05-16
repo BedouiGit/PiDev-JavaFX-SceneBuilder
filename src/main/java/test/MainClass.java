@@ -2,9 +2,12 @@ package test;
 
 import models.Person;
 import services.ServicePerson;
+import services.ServicePosts;
+import utils.BadWordFilter;
 import utils.DBConnection;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class MainClass {
 
@@ -21,6 +24,23 @@ public class MainClass {
         } catch (SQLException e) {
             System.err.println("Erreur: "+e.getMessage());
         }
+        ServicePosts spp=new ServicePosts();
+
+        List<entities.Posts> posts ;
+        try {
+            spp.afficher();
+            System.out.println("showed succefully");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ;
+
+
+
+        String input="not a bad word";
+        String output = BadWordFilter.getCensoredText(input);
+        System.out.println(output);
 
 
     }

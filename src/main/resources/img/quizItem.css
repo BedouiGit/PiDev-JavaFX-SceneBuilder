@@ -1,0 +1,12 @@
+.bg{
+    -fx-background-color: rgba(244, 244,244, 1); /* Lower opacity */
+}
+.blue-btn{
+    -fx-background-color: #1478FF; /* Lower opacity */
+    -fx-background-radius:10px;
+
+}
+.mid-menu2{
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}

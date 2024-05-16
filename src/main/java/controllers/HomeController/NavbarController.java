@@ -52,9 +52,9 @@ public class NavbarController {
 
 
     @FXML
-    private void navigateTnwes(ActionEvent event) {
+    private void navigateTnNews(ActionEvent event) {
         try {
-            NavigationUtil.navigateTo("/front_office/ajouterPost.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/NewsFxml/front_office/AjouterPost.fxml", ((Node) event.getSource()).getScene().getRoot());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class NavbarController {
     @FXML
     private void navigateToProfile(ActionEvent event) {
         try {
-            NavigationUtil.navigateTo("/profile.fxml", ((Node) event.getSource()).getScene().getRoot());
+            NavigationUtil.navigateTo("/fxml/UserFxml/profile.fxml", ((Node) event.getSource()).getScene().getRoot());
 
         } catch (IOException e) {
             e.printStackTrace();

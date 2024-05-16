@@ -80,7 +80,7 @@ public class userService  implements IUser<user>{
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-        String query = "INSERT INTO user(first_name,last_name,email, password, roles, age,address,tel,gender) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
+        String query = "INSERT INTO user(first_name,last_name,email, password, roles, age,address,tel,gender,is_banned) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?)";
         if (UserExistsByEmail(user.getEmail())) {
             System.out.println("User already exists!");
             return false;
@@ -99,6 +99,8 @@ public class userService  implements IUser<user>{
             preparedStatement.setString(7, user.getAddress());
             preparedStatement.setString(8, user.getTel());
             preparedStatement.setString(9, user.getGender());
+            preparedStatement.setBoolean(10, false);
+
             preparedStatement.executeUpdate();
             System.out.println("User added successfully!");
 

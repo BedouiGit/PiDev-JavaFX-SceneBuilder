@@ -64,7 +64,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button layoutX="44.0" layoutY="329.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="110.0" styleClass="btn_workbenchCategories" text="News" textFill="WHITE">
+                <Button layoutX="44.0" layoutY="329.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="110.0" styleClass="btn_workbenchCategories" text="News" textFill="WHITE" onAction="#NavigateToNews">
                     <font>
                         <Font name="Arial Black" size="15.0" />
                     </font>

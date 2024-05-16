@@ -1,0 +1,90 @@
+.post-background{
+    -fx-background-color: #fff;
+    -fx-background-radius: 15;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1) , 5.0, 0.0, 0.0, 5.0);
+}
+
+.reactions-container{
+     -fx-background-color: #fff;
+     -fx-background-radius: 50;
+     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1) , 5.0, 0.0, 0.0, 5.0);
+     -fx-border-width: 1;
+     -fx-border-color:#B8B9BB;
+     -fx-border-radius: 50;
+}
+
+.top-border{
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: #606266;
+}
+
+.text-field{
+    -fx-background-color:#F0F2F5 ;
+    -fx-background-radius:50 ;
+}
+
+.scroll-pane > .viewport{
+
+    -fx-background-color: transparent;
+}
+
+.main-container {
+    -fx-padding: 20px;
+}
+
+.comment-list {
+    -fx-pref-width: 100%;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+}
+
+.comment-list .list-cell {
+    -fx-padding: 10px;
+    -fx-border-color: #ddd;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.comment-text-area {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100px;
+    -fx-font-size: 14pt;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+}
+
+.add-comment-button {
+    -fx-pref-width: 100%;
+    -fx-background-color: #4267B2; /* Facebook blue */
+    -fx-text-fill: white;
+    -fx-font-size: 14pt;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #4267B2;
+}
+
+.add-comment-button:hover {
+    -fx-background-color: #365899; /* Darker Facebook blue */
+}
+#AddPost {
+    -fx-background-color: #007bff; /* Blue background color */
+}
+
+/* Style for the "AddImage" button */
+#AddImage {
+    -fx-background-color: #ffc107; /* Yellow background color */
+}
+
+/* Style for the "Post Done" banner */
+#postDoneBanner {
+    -fx-background-color: #2A914D; /* Green background color */
+    -fx-text-fill: white; /* White text color */
+    -fx-font-size: 12px;
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-padding: 5px 10px; /* Add padding */
+}
+
+/* Align the "AddImage" button to the center */
+#AddImage {
+    -fx-alignment: CENTER;
+}

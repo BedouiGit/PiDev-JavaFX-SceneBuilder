@@ -45,4 +45,16 @@ public class SideBarDashboard {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    void NavigateToNews(ActionEvent event)  throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NewsFxml/back_office/ShowPost_Back.fxml"));
+        Parent categoriesRoot = loader.load();
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(categoriesRoot);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

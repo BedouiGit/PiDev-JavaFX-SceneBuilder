@@ -1,0 +1,116 @@
+.grid-pane {
+    -fx-background-color: #ffffff; /* White background color */
+}
+
+/* Add padding and spacing between elements */
+.grid-pane > * {
+    -fx-padding: 20px; /* Adjust padding as needed */
+}
+
+.grid-pane > *, .grid-pane > * > * {
+    -fx-spacing: 5px; /* Adjust spacing between elements as needed */
+}
+/* Transparent ScrollPane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+/* Hide Vertical ScrollBar */
+.scroll-pane .scroll-bar:vertical {
+    -fx-opacity: 0;
+}
+
+/* Hide Horizontal ScrollBar */
+.scroll-pane .scroll-bar:horizontal {
+    -fx-opacity: 0;
+}
+.Bg{
+    -fx-background-color: white;
+}
+.transparent-button {
+    -fx-background-color: transparent;
+}
+.combo-box .list-cell
+{
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.66667em;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: white, white;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 4 0 4 5;
+
+    /* No alternate highlighting */
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: white;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base
+{
+    -fx-background-color: white, white, white, white;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+.combo-box-base:hover
+{
+    -fx-color: -fx-hover-base;
+}
+
+.combo-box-base:showing
+{
+    -fx-color: -fx-pressed-base;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+.square-transparent-radio-button .radio {
+    -fx-shape: "M -0.5 -0.5 h 12 v 12 h -12 Z"; /* Define a square shape for the radio button */
+    -fx-background-color: transparent; /* Make the background transparent */
+    -fx-border-radius: 2; /* Set a slight border radius */
+    -fx-border-color:    rgba(0, 0, 0, 0.3); /* Set a slightly transparent black color */ /* Set border color */
+}
+
+.square-transparent-radio-button .radio-dot {
+    -fx-background-color: black; /* Set color for the inner dot */
+    -fx-background-radius: 1; /* Set a slight border radius for the inner dot */
+}
+.blue-btn{
+    -fx-background-color: #1478FF; /* Lower opacity */
+    -fx-background-radius:10px;
+
+}
+.shadow-blue{
+    -fx-effect: dropshadow(three-pass-box,rgba(20,120,255,0.25),30,0,0,0);
+}
