@@ -15,7 +15,7 @@
    <children>
       <fx:include source="/fxml/UserFxml/SidebarDashboard.fxml"/>
 
-<AnchorPane prefHeight="721.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="721.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" >
 
    <children>
 

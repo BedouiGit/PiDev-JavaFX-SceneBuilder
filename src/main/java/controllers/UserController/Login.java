@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.mindrot.jbcrypt.BCrypt;
 import models.Role;
 import models.user;
 import services.PasswordEncoder;
@@ -71,7 +70,7 @@ public class Login {
     }
         // Method to redirect to admin dashboard
         private void goToAdminDashboard(user u) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserFxml/UserManegement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dash.fxml"));
         Parent adminRoot = loader.load();
             DashboardAdmin profileController = loader.getController(); // Assuming ProfileController is the name of your controller class
             profileController.initData(u.getRole());

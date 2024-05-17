@@ -36,6 +36,7 @@ public class AffichagePub {
         String searchTerm = searchField.getText();
         // Perform search and update the view...
     }
+
     private void loadPublications(String searchTerm) {
         try {
             List<publication> publications = servicePublication.afficher();

@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
@@ -102,6 +103,23 @@ public class DashboardAdmin {
 
     @FXML
     public void initialize() {
+
+        userService userService = new userService();
+
+
+
+        // Add data points to the line chart
+        Map<String, Integer> userDataByAddress = userService.getUserDataByAddress();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("User Data by Address");
+
+        for (Map.Entry<String, Integer> entry : userDataByAddress.entrySet()) {
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+
+
+
+
         refreshButton.setOnAction(this::refreshButtonAction);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchUsers(newValue);
@@ -272,6 +290,7 @@ public class DashboardAdmin {
         newStage.setScene(new Scene(root));
         newStage.show();
     }
+
     @FXML
     void excel(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
