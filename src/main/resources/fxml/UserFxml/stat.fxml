@@ -7,11 +7,13 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="839.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserController.stat">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="822.0">
          <children>
-            <LineChart fx:id="lineChart" layoutX="74.0" layoutY="280.0" prefHeight="261.0" prefWidth="688.0" title="Number of users per Address">
+             <PieChart fx:id="pieChart" layoutX="109.0" layoutY="14.0" prefHeight="258.0" prefWidth="562.0" title="Active  / Inactive Users" />
+
+             <LineChart fx:id="lineChart" layoutX="67.0" layoutY="291.0" prefHeight="261.0" prefWidth="688.0" title="Number of users per Address">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

@@ -35,8 +35,8 @@ public class SideBarDashboard {
     }
 
     @FXML
-    void NavigateToDash(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dash.fxml"));
+    void NavigateToUserManagement(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UserFxml/UserManegement.fxml"));
         Parent categoriesRoot = loader.load();
 
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
