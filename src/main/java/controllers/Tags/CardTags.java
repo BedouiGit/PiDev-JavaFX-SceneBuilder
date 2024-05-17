@@ -69,7 +69,7 @@ public class CardTags {
     @FXML
     private void handleEditAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back/Tags/editPub.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Tagsfxml/editPub.fxml"));
             Parent root = loader.load();
             editTags controller = loader.getController();
             controller.setTags(this.currentPublication);
@@ -109,7 +109,7 @@ public class CardTags {
                 FXMLLoader loader;
 
                     // Load the front end detail view otherwise
-                    loader = new FXMLLoader(getClass().getResource("/Front/Tags/DetailPublication.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/fxml/Tagsfxml/DetailPublication.fxml"));
 
                 Parent detailView = loader.load();
 
@@ -117,7 +117,7 @@ public class CardTags {
                 controller.setPublication(this.currentPublication);
 
                 // Assuming you have a static method in MainFX to change the center view
-                MainFX.setCenterView(detailView);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

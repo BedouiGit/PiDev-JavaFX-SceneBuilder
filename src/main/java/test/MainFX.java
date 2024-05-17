@@ -26,7 +26,11 @@ public class MainFX extends Application {
     }
 
     public static void setCenterView(Parent node) {
-        mainLayout.setCenter(node);
+        if (mainLayout != null) {
+            mainLayout.setCenter(node);
+        } else {
+            System.err.println("Main layout is not initialized.");
+        }
     }
 
     public static void main(String[] args) {

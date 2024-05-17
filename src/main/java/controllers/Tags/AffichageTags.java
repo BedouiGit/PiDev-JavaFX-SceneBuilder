@@ -47,7 +47,7 @@ public class AffichageTags {
 
             publicationsContainer.getChildren().clear();
             for (Tags pub : publicati) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back/Tags/cardPub.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Tagsfxml/cardPub.fxml"));
                 Node card = loader.load(); // This line can throw IOException
                 CardTags controller = loader.getController();
                 controller.setPublication(pub);

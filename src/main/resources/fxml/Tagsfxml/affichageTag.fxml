@@ -11,8 +11,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="721.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Tags.AffichageTags">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Tags.AffichageTags">
+    <children>
+        <fx:include source="/fxml/UserFxml/SidebarDashboard.fxml"/>
+<AnchorPane prefHeight="721.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
     <children>
         <ScrollPane layoutX="7.0" layoutY="3.0" prefHeight="718.0" prefWidth="1268.0">
             <padding>
@@ -54,3 +56,5 @@
         </VBox>
     </children>
 </AnchorPane>
+    </children>
+</HBox>

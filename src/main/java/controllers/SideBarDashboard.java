@@ -24,7 +24,7 @@ public class SideBarDashboard {
     }
     @FXML
     void NavigateToTags(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CategoriesFxml/Admin/ListcategoryAdmin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Tagsfxml/affichageTag.fxml"));
         Parent categoriesRoot = loader.load();
 
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cardPane" onMouseClicked="#handleCardClick" prefHeight="489.0" prefWidth="655.0" styleClass="image-view" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Publication.CardPub">
+<AnchorPane fx:id="cardPane" onMouseClicked="#handleCardClick" prefHeight="489.0" prefWidth="655.0" styleClass="image-view" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Publication.CardPub">
 
     <children>
 

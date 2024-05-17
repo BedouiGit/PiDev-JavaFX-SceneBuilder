@@ -3,7 +3,9 @@ package controllers.Publication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,7 +16,6 @@ import models.Commentaire;
 import models.publication;
 import services.ServiceCommentaire;
 import services.ServicePublication;
-import test.MainFX;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,7 +77,6 @@ public class CardPub {
 
 
     }
-
     @FXML
     private void handleEditAction(ActionEvent event) {
         try {
@@ -84,13 +84,17 @@ public class CardPub {
             Parent root = loader.load();
             editPub controller = loader.getController();
             controller.setPublication(this.currentPublication);
-            MainFX.setCenterView(root);
+
+            // Get the current scene and set its root to the root of the new FXML file
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+
 
 
 
@@ -116,24 +120,23 @@ public class CardPub {
 
     @FXML
     private void handleCardClick(MouseEvent event) {
-        if (event.getClickCount() == 2) {
+        if (event.getClickCount() == 2) { // Check if it's a double-click
             try {
-                FXMLLoader loader;
-
-                // Load the front end detail view otherwise
-                loader = new FXMLLoader(getClass().getResource("/fxml/Publicationfxml/DetailPublication.fxml"));
-
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Publicationfxml/DetailPublication.fxml"));
                 Parent detailView = loader.load();
-
                 DetailPublication controller = loader.getController();
                 controller.setPublication(this.currentPublication);
 
+                // Get the current scene and set its root to the root of the new FXML file
+                Scene scene = ((Node) event.getSource()).getScene();
+                scene.setRoot(detailView);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
 
     private void updateWarningIconVisibility() {
         try {
